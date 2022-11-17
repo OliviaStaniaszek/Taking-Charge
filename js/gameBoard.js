@@ -16,8 +16,19 @@ function playGame() {
     layer = new Konva.Layer();
     stage.add(layer);
     //add the components
-    var s = new Switch(20, 20);
+    var s = new Switch(20, 20, true);
     layer.add(s.graphics);
+
+    var r = new Resistor(20, 100, 10);
+    layer.add(r.graphics);
+
+    var b = new Battery(20, 180);
+    layer.add(b.graphics);
+
+    var l = new LightBulb(20, 260, true);
+    layer.add(l.graphics);
+
+
 
     // use event delegation to update pointer style
     // and apply borders
