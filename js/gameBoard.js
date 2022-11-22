@@ -28,6 +28,11 @@ function playGame() {
     var l = new LightBulb(20, 260, true);
     layer.add(l.graphics);
 
+    let allComponents = new Array(s, r, b, l); //array holding all components in a level
+
+    var box1 = new Box(50,50,100,100); //not working 
+    layer.add(box1.graphics);
+    console.log(box1);
 
 
     // use event delegation to update pointer style

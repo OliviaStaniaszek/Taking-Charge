@@ -62,9 +62,12 @@ class Switch extends CircuitComponent {
         this.graphics.me = this;
 
         this.graphics.on('pointerdblclick', function () {
-            console.log(this.me);
-            this.me.closed ? this.me.setOpen() : this.me.setClose();
-            console.log(this.closed);
+            // console.log("clicked"); // 
+            // console.log(this.me);
+
+            this.me.isClosed() ? this.me.setOpen() : this.me.setClose();
+
+            // console.log(this.me.closed);
         });
 
     }
@@ -74,17 +77,15 @@ class Switch extends CircuitComponent {
     }; //returns boolean
 
     setClose() {
-
+        console.log("close");
         this.setImage(this.x, this.y, 'images/switch_on.png');
         this.closed = true;
-
     }
 
     setOpen() {
-
+        console.log('open');
         this.setImage(this.x, this.y, 'images/switch_off.png');
-        this.close = false;
-
+        this.closed = false;
     }
 }
 
