@@ -1,6 +1,6 @@
 
 class CircuitComponent {
-    //every circuit component has a resistance, typr, location and graphics.
+    //every circuit component has a resistance, type, location and graphics.
     constructor(resistance = 0, type = "EMPTY", x, y, imgPath) {
         this.resistance = resistance;
         this.type = type;
