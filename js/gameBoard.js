@@ -24,19 +24,15 @@ function playGame() {
     var box4 = new Box(250, 250, 100, 100);
     var box5 = new Box(150, 100, 100, 100);
 
+    var boxes = [box1, box2, box3, box4, box5];
+
     wirebox.drawBox();
     layer.add(wirebox.graphics);
-    box1.drawBox();
-    layer.add(box1.graphics);
-    box2.drawBox();
-    layer.add(box2.graphics);
-    box3.drawBox();
-    layer.add(box3.graphics);
-    box4.drawBox();
-    layer.add(box4.graphics);
-    box5.drawBox();
-    layer.add(box5.graphics);
-    // console.log(box1);
+
+    for(let i=0; i<5; i++){ //create boxes for q1
+        boxes[i].drawBox();
+        layer.add(boxes[i].graphics);
+    }
 
 
     inventory = new Inventory(1);
@@ -46,10 +42,11 @@ function playGame() {
     layer.on('dragmove', function (e) {
         var target = e.target;
         var targetRect = e.target.getClientRect();
-
-        if (haveIntersection(box2.graphics.getClientRect(), targetRect)) {
-            console.log("in box2");
-            console.log(target.me);
+        for(let i=0; i<boxes.length; i++){
+            if (haveIntersection(boxes[i].graphics.getClientRect(), targetRect)) {
+                console.log("in box", i+1);
+                console.log(target.me);
+            }
         }
     });
 
