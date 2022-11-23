@@ -64,7 +64,7 @@ class Switch extends CircuitComponent {
         this.graphics.on('pointerdblclick', function () {
             console.log(this.me);
             this.me.closed ? this.me.setOpen() : this.me.setClose();
-            console.log(this.closed);
+            console.log(this.me.closed);
         });
 
     }
@@ -83,7 +83,7 @@ class Switch extends CircuitComponent {
     setOpen() {
 
         this.setImage(this.x, this.y, 'images/switch_off.png');
-        this.close = false;
+        this.closed = false;
 
     }
 }
@@ -96,7 +96,7 @@ class Resistor extends CircuitComponent {
 
         var simpleText = new Konva.Text({
             x: this.img.width() / 2,
-            y: this.img.height(),
+            y: this.img.y(),
             text: this.resistance.toString() + ' Ω',
             fontSize: 10,
             fontFamily: 'Calibri',

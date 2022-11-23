@@ -1,6 +1,8 @@
 var width, height;
 var stage, layer;
 document.getElementById("body").onload = function () { playGame() };
+document.getElementById("level").innerHTML = "level" + level;
+
 
 function playGame() {
     console.log("play game");
@@ -15,7 +17,10 @@ function playGame() {
 
     layer = new Konva.Layer();
     stage.add(layer);
+    inventory = new Inventory(1);
+    layer.add(inventory.graphics);
     //add the components
+    /*
     var s = new Switch(20, 20, true);
     layer.add(s.graphics);
 
@@ -27,8 +32,7 @@ function playGame() {
 
     var l = new LightBulb(20, 260, true);
     layer.add(l.graphics);
-
-
+*/
 
     // use event delegation to update pointer style
     // and apply borders
@@ -44,3 +48,5 @@ function playGame() {
     });
 
 }
+
+
