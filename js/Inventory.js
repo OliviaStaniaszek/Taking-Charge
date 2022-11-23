@@ -1,11 +1,10 @@
-//this is a group
-//provide with array of types
-//loop over the component array and use switch to draw them
-//call inventory in gameBoard
-//draws the relevant components from the array based on the level he recives from Game class
+
 class Inventory {
+    //the constructor recives the game's level 
     constructor(level) {
+        //array of the inventory components
         this.inventory = [];
+        //initiate the graphics of the inventory as a konva group
         this.graphics = new Konva.Group({
             x: 0,
             y: 0,
@@ -13,26 +12,28 @@ class Inventory {
             draggable: false,
 
         });
+        //inventory's fixed background
         var rect = new Konva.Rect({
             width: 200,
             height: 600,
             fill: 'grey',
-            //stroke: 'black',
-            //strokeWidth: 5,
             x: 0,
             y: 0
         });
 
         this.graphics.add(rect);
         this.level = level;
+        //initiates the componentTypes arrAy based on the level provided
         switch (level) {
+            //level 1
             case 1:
-                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_50"];
+                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_30", "RESISTOR_50"];
                 break;
             default:
                 this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10"];
                 break;
         }
+        //build the inventory array of components,calling the createComponent function to create the appropriate circuit components for the given level
         for (var i = 0; i < this.componentTypes.length; i++) {
             this.inventory.push(this.createComponent(this.componentTypes[i], 20, 20 + 40 * i));
             //add the component's graphics to the inventory's graphics' Group
@@ -41,7 +42,10 @@ class Inventory {
         }
 
     }
+
+    //create the components based on the given types
     createComponent(componentType, x, y) {
+        //split the componentType string where _ appears. this is done to seperate the resistor from the resistance provided
         var r = componentType.split("_");
         switch (r[0]) {
             case "LIGHTBULB":

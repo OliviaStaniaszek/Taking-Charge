@@ -14,7 +14,7 @@ class CircuitComponent {
         });
         this.setImage(x, y, imgPath);
 
-        // vtyvytfytgvyuygg
+
 
     }
 

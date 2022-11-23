@@ -1,7 +1,7 @@
 var width, height;
 var stage, layer;
 document.getElementById("body").onload = function () { playGame() };
-document.getElementById("level").innerHTML = "level" + level;
+
 
 
 function playGame() {
@@ -35,7 +35,6 @@ function playGame() {
 */
 
     // use event delegation to update pointer style
-    // and apply borders
     layer.on('mouseover', function (evt) {
         var shape = evt.target;
         document.body.style.cursor = 'pointer';
