@@ -33,7 +33,10 @@ function playGame() {
     var l = new LightBulb(20, 260, true);
     layer.add(l.graphics);
 */
-
+    layer = new Konva.Layer();
+    stage.add(layer);
+    scientist = new Scientist("HINT", 300, 0);
+    layer.add(scientist.graphics);
     // use event delegation to update pointer style
     layer.on('mouseover', function (evt) {
         var shape = evt.target;
