@@ -5,6 +5,7 @@ class Game {
         this.gameStarted = gameStarted;
         //int, this is the index of the questions array
         this.level = this.level;
+        document.getElementById("level").innerHTML = "level" + level;
     }
 
 

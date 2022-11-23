@@ -14,7 +14,7 @@ class CircuitComponent {
         });
         this.setImage(x, y, imgPath);
 
-        // vtyvytfytgvyuygg
+
 
     }
 
@@ -67,7 +67,7 @@ class Switch extends CircuitComponent {
 
             this.me.isClosed() ? this.me.setOpen() : this.me.setClose();
 
-            // console.log(this.me.closed);
+            // console.log(this.me.me.closed);
         });
 
     }
@@ -85,7 +85,8 @@ class Switch extends CircuitComponent {
     setOpen() {
         console.log('open');
         this.setImage(this.x, this.y, 'images/switch_off.png');
-        this.closed = false;
+        this.close = false;
+
     }
 }
 
@@ -97,7 +98,7 @@ class Resistor extends CircuitComponent {
 
         var simpleText = new Konva.Text({
             x: this.img.width() / 2,
-            y: this.img.height(),
+            y: this.img.y(),
             text: this.resistance.toString() + ' Ω',
             fontSize: 10,
             fontFamily: 'Calibri',
