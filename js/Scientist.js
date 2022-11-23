@@ -8,6 +8,7 @@ class Scientist {
             rotation: 0,
             draggable: false
         });
+
         switch (state) {
             case "TEACH":
                 this.setImage(x, y, "images/scientist_teach.png");
@@ -18,7 +19,6 @@ class Scientist {
             case "HINT":
                 this.setImage(x, y, "images/scientist_hint.png");
         }
-
     }
 
 
@@ -28,10 +28,20 @@ class Scientist {
         this.img = new Konva.Image({
             x: x,
             y: y,
-            width: 73,
-            height: 65,
+            width: 160,
+            height: 180,
 
         });
+        var imageObj1 = new Image();
+        //console.log(this.img);
+        imageObj1.img = this.img;
+        imageObj1.onload = function () {
+            //console.log(this.img);
+            this.img.image(imageObj1);
+        };
+        imageObj1.src = imgPath;
+        this.graphics.add(this.img);
+
 
     }
 }
