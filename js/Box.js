@@ -12,7 +12,7 @@ class Box {
         });
     };
 
-    drawBox(){
+    drawBox() {
         console.log('box created');
 
         this.graphics.removeChildren();
@@ -25,17 +25,17 @@ class Box {
             stroke: 'black',
             strokeWidth: 2,
             cornerRadius: 10,
-          });
-          // add the shape to the layer
+        });
+        // add the shape to the layer
         //   layer.add(rect1);
         this.graphics.add(this.rect1);
-        
 
-        
+
+
     }
 
-    contains(invlevel){
-        for(let i=0; i<invlevel.inventory.length; i++){
+    contains(invlevel) {
+        for (let i = 0; i < invlevel.inventory.length; i++) {
             // console.log(invlevel.inventory[i]);
             let comp = invlevel.inventory[i]; //comp short for component
             // let compx = comp.getX();
@@ -45,25 +45,24 @@ class Box {
             // console.log(rect.x, rect.y);
             // console.log(invlevel.inventory[i].type, compx, compy);
             // if(comp.x - comp.width/2 > this.x - this.width && comp.x + comp.width/2 < this.x + this.width){
-                
+
             // }
 
         }
     }
-        
+
 
 }
 
 
 
 class Wire extends Box {
-    constructor(x, y,width,height) {
-        //initiate the parent CircuitComponent constructor with the spesic characteristics of the Switch
-        super(x,y,width,height);
+    constructor(x, y, width, height) {
+        super(x, y, width, height);
 
-        };
+    };
 
-    drawBox(){
+    drawBox() {
         console.log('box created');
 
         this.graphics.removeChildren();
@@ -76,13 +75,13 @@ class Wire extends Box {
             stroke: 'red',
             strokeWidth: 2,
             cornerRadius: 10,
-            });
-            // add the shape to the layer
+        });
+        // add the shape to the layer
         //   layer.add(rect1);
         this.graphics.add(this.rect1);
-    }  
+    }
 
-    contains(){
+    contains() {
         return (null); //not applicable 
     }
 }

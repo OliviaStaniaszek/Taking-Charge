@@ -14,7 +14,7 @@ class CircuitComponent {
         });
         this.setImage(x, y, imgPath);
 
-        this.graphics.on('mouseout',function(){
+        this.graphics.on('mouseout', function () {
             // console.log(stage.getPointerPosition());
             // let pos = stage.getPointerPosition();
             // this.x = pos.x;
@@ -56,20 +56,20 @@ class CircuitComponent {
 
     }
 
-    getX(){
-        
+    getX() {
+
         return (this.x);
     }
-    
-    getY(){
+
+    getY() {
         return (this.y);
     }
 
-    getRect(){
-        return(this.img.getClientRect);
+    getRect() {
+        return (this.img.getClientRect);
     }
 
-    
+
 
 }
 
@@ -112,10 +112,12 @@ class Switch extends CircuitComponent {
 }
 
 class Resistor extends CircuitComponent {
+
     constructor(x, y, resistance) {
 
         super(resistance, "RESISTOR", x, y, 'images/resistor.png');
         this.resistance = resistance;
+        this.graphics.me = this;
 
         var simpleText = new Konva.Text({
             x: this.img.width() / 2,
@@ -136,6 +138,7 @@ class Battery extends CircuitComponent {
     constructor(x, y, voltage) {
         super(0, "BATTERY", x, y, 'images/battery.png');
         this.voltage = voltage;
+        this.graphics.me = this;
 
     }
 
@@ -149,6 +152,8 @@ class LightBulb extends CircuitComponent {
     constructor(x, y, on) {
         super(9.5, "LIGHT_BULB", x, y, on ? 'images/lightbulb_on.png' : 'images/lightbulb_off.png');
         this.on = on;
+        this.graphics.me = this;
+
 
     }
 
