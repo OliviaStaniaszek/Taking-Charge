@@ -14,6 +14,12 @@ class CircuitComponent {
         });
         this.setImage(x, y, imgPath);
 
+        this.graphics.on('mouseout',function(){
+            // console.log(stage.getPointerPosition());
+            // let pos = stage.getPointerPosition();
+            // this.x = pos.x;
+            // this.y = pos.y;
+        })
 
 
     }
@@ -50,6 +56,21 @@ class CircuitComponent {
 
     }
 
+    getX(){
+        
+        return (this.x);
+    }
+    
+    getY(){
+        return (this.y);
+    }
+
+    getRect(){
+        return(this.img.getClientRect);
+    }
+
+    
+
 }
 
 
@@ -85,7 +106,7 @@ class Switch extends CircuitComponent {
     setOpen() {
         console.log('open');
         this.setImage(this.x, this.y, 'images/switch_off.png');
-        this.close = false;
+        this.closed = false;
 
     }
 }
