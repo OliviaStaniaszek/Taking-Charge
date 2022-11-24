@@ -1,3 +1,8 @@
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight*0.7;
+
 
 class CircuitComponent {
     //every circuit component has a resistance, type, location and graphics.
@@ -6,23 +11,37 @@ class CircuitComponent {
         this.type = type;
         this.x = x;
         this.y = y;
-        this.graphics = new Konva.Group({
-            x: x,
-            y: y,
-            rotation: 0,
-            draggable: true
-        });
-        this.setImage(x, y, imgPath);
+        this.source = imgPath;
+        // this.img = 
+        // this.graphics = new Konva.Group({
+        //     x: x,
+        //     y: y,
+        //     rotation: 0,
+        //     draggable: true
+    };
+        // this.setImage(x, y, imgPath);
 
-        this.graphics.on('mouseout', function () {
-            // console.log(stage.getPointerPosition());
-            // let pos = stage.getPointerPosition();
-            // this.x = pos.x;
-            // this.y = pos.y;
-        })
+        // this.graphics.on('mouseout', function () {
+        //     // console.log(stage.getPointerPosition());
+        //     // let pos = stage.getPointerPosition();
+        //     // this.x = pos.x;
+        //     // this.y = pos.y;
+        // })
 
-
+    createImg(){
+        const part = new Image();
+        part.src = this.source;
+        part.id = this.type;
+        part.draggable = "true";
+        part.ondragstart = "drag(event)";
+        part.visibility = "visible"; //hidden
+        part.width = 90;
+        part.height = 90;
+        document.body.appendChild(part);
     }
+
+
+
 
     getResistance() {
         return (this.resistance);
@@ -31,43 +50,43 @@ class CircuitComponent {
         return (this.type);
     } //return String
 
-    setImage(x, y, imgPath) {
-        //to empty the graphics' group container
-        this.graphics.removeChildren();
-        this.img = new Konva.Image({
-            x: x,
-            y: y,
-            width: 73,
-            height: 65,
-            // stroke: 'red',
-            // strokeWidth: 10,
+    // setImage(x, y, imgPath) {
+    //     //to empty the graphics' group container
+    //     this.graphics.removeChildren();
+    //     this.img = new Konva.Image({
+    //         x: x,
+    //         y: y,
+    //         width: 73,
+    //         height: 65,
+    //         // stroke: 'red',
+    //         // strokeWidth: 10,
 
-        });
+    //     });
 
-        var imageObj1 = new Image();
-        //console.log(this.img);
-        imageObj1.img = this.img;
-        imageObj1.onload = function () {
-            //console.log(this.img);
-            this.img.image(imageObj1);
-        };
-        imageObj1.src = imgPath;
-        this.graphics.add(this.img);
+    //     var imageObj1 = new Image();
+    //     //console.log(this.img);
+    //     imageObj1.img = this.img;
+    //     imageObj1.onload = function () {
+    //         //console.log(this.img);
+    //         this.img.image(imageObj1);
+    //     };
+    //     imageObj1.src = imgPath;
+    //     this.graphics.add(this.img);
 
-    }
+    // }
 
-    getX() {
+    // getX() {
 
-        return (this.x);
-    }
+    //     return (this.x);
+    // }
 
-    getY() {
-        return (this.y);
-    }
+    // getY() {
+    //     return (this.y);
+    // }
 
-    getRect() {
-        return (this.img.getClientRect);
-    }
+    // getRect() {
+    //     return (this.img.getClientRect);
+    // }
 
 
 
@@ -138,7 +157,7 @@ class Battery extends CircuitComponent {
     constructor(x, y, voltage) {
         super(0, "BATTERY", x, y, 'images/battery.png');
         this.voltage = voltage;
-        this.graphics.me = this;
+        // this.graphics.me = this;
 
     }
 
