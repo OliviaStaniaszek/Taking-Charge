@@ -12,39 +12,76 @@ class Box {
         });
     };
 
-    drawBox(x,y,width,height){
+    drawBox() {
         console.log('box created');
-        // let box = new Konva.Rect({
-        //     x: this.x,
-        //     y: this.y,
-        //     width: this.width,
-        //     height: this.height,
-        //     fill: 'red',
-        //     stroke: 'black',
-        //     strokeWidth: 4
-        // })
-        // this.graphics.add(box);
 
+        this.graphics.removeChildren();
         this.rect1 = new Konva.Rect({
             x: this.x,
             y: this.y,
             width: this.width,
             height: this.height,
-            fill: 'red',
+            fill: 'white',
             stroke: 'black',
-            strokeWidth: 4,
-          });
-          // add the shape to the layer
+            strokeWidth: 2,
+            cornerRadius: 10,
+        });
+        // add the shape to the layer
         //   layer.add(rect1);
         this.graphics.add(this.rect1);
-        
 
-        
-    }
 
-    // contains(){
-
-    // }
-        
 
     }
+
+    contains(invlevel) {
+        for (let i = 0; i < invlevel.inventory.length; i++) {
+            // console.log(invlevel.inventory[i]);
+            let comp = invlevel.inventory[i]; //comp short for component
+            // let compx = comp.getX();
+            // let compy = comp.getY();
+            // console.log(comp.position());
+            // let rect = invlevel.inventory[i].getClientRect();
+            // console.log(rect.x, rect.y);
+            // console.log(invlevel.inventory[i].type, compx, compy);
+            // if(comp.x - comp.width/2 > this.x - this.width && comp.x + comp.width/2 < this.x + this.width){
+
+            // }
+
+        }
+    }
+
+
+}
+
+
+
+class Wire extends Box {
+    constructor(x, y, width, height) {
+        super(x, y, width, height);
+
+    };
+
+    drawBox() {
+        console.log('box created');
+
+        this.graphics.removeChildren();
+        this.rect1 = new Konva.Rect({
+            x: this.x,
+            y: this.y,
+            width: this.width,
+            height: this.height,
+            fill: 'rgba(0,0,0,0)',
+            stroke: 'red',
+            strokeWidth: 2,
+            cornerRadius: 10,
+        });
+        // add the shape to the layer
+        //   layer.add(rect1);
+        this.graphics.add(this.rect1);
+    }
+
+    contains() {
+        return (null); //not applicable 
+    }
+}

@@ -16,12 +16,24 @@ class Inventory {
         var rect = new Konva.Rect({
             width: 200,
             height: 600,
-            fill: 'grey',
+            fill: '#B0AFAF',
             x: 0,
             y: 0
         });
-
         this.graphics.add(rect);
+        //inventory's border
+        var border = new Konva.Rect({
+            width: 2,
+            height: rect.height(),
+            fill: '#B0AFAF',
+            //fill: 'yellow',
+            x: rect.width() - 2,
+            y: 0
+        });
+        this.graphics.add(border);
+        console.log(border.x, border.y, border.height);
+
+
         this.level = level;
         //initiates the componentTypes array based on the level provided
         switch (level) {
@@ -61,5 +73,17 @@ class Inventory {
                 return (new Thermistor(x, y, resistance));
         }
 
+    }
+    //checks which component this graphics belongs to 
+    whoAmI(graphics) {
+        this.inventory.forEach(function (item) {
+            if (item.graphics == graphics) {
+                return (item);
+            }
+        }
+
+        );
+        console.log("Inventory.whoIAm() couldn't find the component");
+        return (null);
     }
 }
