@@ -23,14 +23,14 @@ class Inventory {
 
         this.graphics.add(rect);
         this.level = level;
-        //initiates the componentTypes arrAy based on the level provided
+        //initiates the componentTypes array based on the level provided
         switch (level) {
             //level 1
             case 1:
-                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_30", "RESISTOR_50"];
+                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_30", "RESISTOR_50","THERMISTOR"];
                 break;
             default:
-                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10"];
+                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "THERMISTOR"];
                 break;
         }
         //build the inventory array of components,calling the createComponent function to create the appropriate circuit components for the given level
@@ -47,6 +47,7 @@ class Inventory {
     createComponent(componentType, x, y) {
         //split the componentType string where _ appears. this is done to seperate the resistor from the resistance provided
         var r = componentType.split("_");
+        var resistance;
         switch (r[0]) {
             case "LIGHTBULB":
                 return (new LightBulb(x, y, false));
@@ -56,6 +57,8 @@ class Inventory {
                 return (new Battery(x, y, 6));
             case "SWITCH":
                 return (new Switch(x, y, false));
+            case "THERMISTOR":
+                return (new Thermistor(x, y, resistance));
         }
 
     }

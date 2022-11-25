@@ -37,6 +37,13 @@ h2 {
   color: rgba(79, 113, 116, 0.72);
 }
 
+#slider{
+  position:absolute ;
+  bottom: 50px;
+  right:20px;
+  width: 235px;
+}
+
 .button {
   vertical-align: middle;
   display: inline-block;
