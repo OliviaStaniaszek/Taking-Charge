@@ -94,7 +94,9 @@ class Switch extends CircuitComponent {
     }
 
     isClosed() {
+        console.log("isClosed: " + this.closed);
         return (this.closed);
+
     }; //returns boolean
 
     setClose() {

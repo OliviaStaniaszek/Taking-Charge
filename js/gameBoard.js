@@ -2,7 +2,14 @@ var width, height;
 var stage, layer;
 document.getElementById("body").onload = function () { playGame() };
 
+var wirebox = new Wire(175, 45, 900, 360);
+var box1 = new Box(350, 20, 100, 100);
+var box2 = new Box(600, 100, 100, 100);
+var box3 = new Box(450, 200, 100, 100);
+var box4 = new Box(250, 200, 100, 100);
+var box5 = new Box(150, 100, 100, 100);
 
+var boxes = [box1, box2, box3, box4, box5];
 
 function playGame() {
     console.log("play game");
@@ -17,19 +24,12 @@ function playGame() {
     layer = new Konva.Layer();
     stage.add(layer);
     //makes wire and empty boxes
-    var wirebox = new Wire(175, 45, 900, 460);
-    var box1 = new Box(350, 20, 100, 100);
-    var box2 = new Box(600, 100, 100, 100);
-    var box3 = new Box(450, 250, 100, 100);
-    var box4 = new Box(250, 250, 100, 100);
-    var box5 = new Box(150, 100, 100, 100);
 
-    var boxes = [box1, box2, box3, box4, box5];
 
     wirebox.drawBox();
     layer.add(wirebox.graphics);
 
-    for(let i=0; i<5; i++){ //create boxes for q1
+    for (let i = 0; i < 5; i++) { //create boxes for q1
         boxes[i].drawBox();
         layer.add(boxes[i].graphics);
     }
@@ -39,21 +39,20 @@ function playGame() {
     layer.add(inventory.graphics);
 
 
-    layer.on('dragmove', function (e) {
+    /*layer.on('dragend', function (e) {
         var target = e.target;
         var targetRect = e.target.getClientRect();
-        for(let i=0; i<boxes.length; i++){
+        for (let i = 0; i < boxes.length; i++) {
             if (haveIntersection(boxes[i].graphics.getClientRect(), targetRect)) {
-                console.log("in box", i+1);
+                console.log("in box", i + 1);
                 console.log(target.me);
+                boxes[i].me = target.me;
             }
         }
-    });
+        checkCircuit();
+    });*/
 
-
-
-
-    scientist = new Scientist("HINT", 300, 0);
+    scientist = new Scientist("HINT", 600, 150);
     layer.add(scientist.graphics);
     // use event delegation to update pointer style
     layer.on('mouseover', function (evt) {
@@ -66,38 +65,85 @@ function playGame() {
         document.body.style.cursor = 'default';
         //shape.strokeEnabled(true);
     });
+}
 
+function haveIntersection(r1, r2) {
+    return !(
+        r2.x > r1.x + r1.width ||
+        r2.x + r2.width < r1.x ||
+        r2.y > r1.y + r1.height ||
+        r2.y + r2.height < r1.y
+    );
+}
 
-    //https://konvajs.org/docs/sandbox/Collision_Detection.html 
-    /* layer.on('dragmove', function (e) {
-         var target = e.target;
-         var targetRect = e.target.getClientRect();
-         layer.children.forEach(function (group) {
-             //dont check with self
-             if (group === target) {
-                 return;
-             }
-             console.log()
-             if (haveIntersection(group.getClientRect(), targetRect)) {
-                 console.log("collision");
-                 group.findOne('.fillShape').fill('red');
-             } else {
-                 group.findOne('.fillShape').fill('.grey');
-             }
-         });
-     });*/
-
-    function haveIntersection(r1, r2) {
-        return !(
-            r2.x > r1.x + r1.width ||
-            r2.x + r2.width < r1.x ||
-            r2.y > r1.y + r1.height ||
-            r2.y + r2.height < r1.y
-        );
+// update the content of the boxes
+function updateBoxContent() {
+    console.log("updateBoxContent()...")
+    //loop through all boxes
+    for (let i = 0; i < boxes.length; i++) {
+        //initialise the box as "empty"
+        boxes[i].me = undefined;
+        //loop through all components in the inventory array
+        for (let c = 0; c < inventory.inventory.length; c++) {
+            //check for intersection between box i and each component from the inventory array
+            if (haveIntersection(boxes[i].graphics.getClientRect(),
+                inventory.inventory[c].graphics.getClientRect())) {
+                console.log(inventory.inventory[c].getType() + " with resistance " +
+                    inventory.inventory[c].getResistance() +
+                    " is in box ", i + 1);
+                boxes[i].me = inventory.inventory[c];
+            }
+        }
     }
+    checkCircuit();
+}
 
-
+// checks if we got the question right!
+function checkCircuit() {
+    if (hasBattery() && noEmptyCells() && switchesAreClosed()) {
+        //correctAnswer();
+        console.log("correct!");
+        scientist.setState("CORRECT");
+    } else {
+        //wrongAnswer();
+        console.log("wrong!");
+        scientist.setState("INCORRECT");
+    }
 
 }
 
+function hasBattery() {
+    var result = false;
+    boxes.forEach(function (i) {
 
+        if (i.me != undefined && i.me.getType() == "BATTERY") {
+            result = true;
+        }
+    });
+    console.log("battery: " + result);
+    return result;
+}
+
+function noEmptyCells() {
+    var result = true;
+    boxes.forEach(function (i) {
+
+        if (i.me == undefined) {
+            result = false;
+        }
+    });
+    console.log("noEmptyCells: " + result);
+    return result;
+}
+
+function switchesAreClosed() {
+    var result = true;
+    boxes.forEach(function (i) {
+
+        if (i.me != undefined && i.me.getType() == "SWITCH" && !i.me.isClosed()) {
+            result = false;
+        }
+    });
+    console.log("switchesAreClosed" + result);
+    return result;
+}

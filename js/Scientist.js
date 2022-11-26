@@ -2,6 +2,8 @@
 class Scientist {
     //the constructor recives the scientist's state as well as the location(x,y)
     constructor(state, x, y) {
+        this.x = x;
+        this.y = y;
         this.state = state;
         //new graphics' geroup
         this.graphics = new Konva.Group({
@@ -10,17 +12,7 @@ class Scientist {
             rotation: 0,
             draggable: false
         });
-        //calls the setImage function with the appropriate imgPath, based on the state 
-        switch (state) {
-            case "TEACH":
-                this.setImage(x, y, "images/scientist_teach.png");
-            case "CORRECT":
-                this.setImage(x, y, "images/scientist_correct.png");
-            case "INCORRECT":
-                this.setImage(x, y, "images/scientist_incorrect.png");
-            case "HINT":
-                this.setImage(x, y, "images/scientist_hint.png");
-        }
+        this.setState(this.state);
     }
 
     //add the image to the graphics' group
@@ -45,5 +37,27 @@ class Scientist {
         this.graphics.add(this.img);
 
 
+    }
+    setState(state) {
+        this.state = state;
+        //calls the setImage function with the appropriate imgPath, based on the state 
+        switch (state) {
+            case "TEACH":
+                this.setImage(this.x, this.y, "images/scientist_teach.png");
+                break;
+            case "CORRECT":
+                this.setImage(this.x, this.y, "images/scientist_correct.png");
+                break;
+            case "INCORRECT":
+                this.setImage(this.x, this.y, "images/scientist_incorrect.png");
+                break;
+            case "HINT":
+                this.setImage(this.x, this.y, "images/scientist_hint.png");
+                break;
+            default:
+                console.log("ERROR!! scientist state is wrong!!!! " + state);
+                this.setImage(this.x, this.y, "images/scientist_teach.png");
+                break;
+        }
     }
 }
