@@ -177,4 +177,45 @@ class LightBulb extends CircuitComponent {
 
 
 
-} 
+}
+
+class Thermistor extends CircuitComponent {
+
+    constructor(x, y, resistance) {
+
+        super(resistance, "THERMISTOR", x, y, 'images/thermistor.png');
+        this.resistance = resistance;
+
+        var text = new Konva.Text({
+            x: stage.width() / 1.2,
+            y: 625,
+            text:'Thermistor resistance: ' ,
+            fontSize: 22,
+            fontFamily: 'Calibri',
+            fill: 'blue',
+        });
+
+        this.graphics.add(text);
+        layer.add(text);
+
+        var textValue = new Konva.Text({
+            x: stage.width() / 1.03,
+            y: 625,
+            text:'0' ,
+            fontSize: 22,
+            fontFamily: 'Calibri',
+            fill: 'blue',
+        });
+        
+        var slider = document.getElementById('slider');
+        slider.oninput = function () {
+            textValue.text(slider.value);
+            layer.add(textValue);
+            this.resistance = parseInt(slider.value);
+            console.log(this.resistance);
+            return this.resistance;
+        }  
+        
+    }
+}
+
