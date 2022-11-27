@@ -15,23 +15,12 @@ class Inventory {
         //inventory's fixed background
         var rect = new Konva.Rect({
             width: 200,
-            height: 600,
-            fill: '#B0AFAF',
+            height: 500,
+            fill: '#E7E6E6',
             x: 0,
             y: 0
         });
         this.graphics.add(rect);
-        //inventory's border
-        var border = new Konva.Rect({
-            width: 2,
-            height: rect.height(),
-            fill: '#B0AFAF',
-            //fill: 'yellow',
-            x: rect.width() - 2,
-            y: 0
-        });
-        this.graphics.add(border);
-        console.log(border.x, border.y, border.height);
 
 
         this.level = level;
@@ -39,7 +28,7 @@ class Inventory {
         switch (level) {
             //level 1
             case 1:
-                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_30", "RESISTOR_50","THERMISTOR"];
+                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_30", "RESISTOR_50", "THERMISTOR"];
                 break;
             default:
                 this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "THERMISTOR"];
@@ -47,7 +36,7 @@ class Inventory {
         }
         //build the inventory array of components,calling the createComponent function to create the appropriate circuit components for the given level
         for (var i = 0; i < this.componentTypes.length; i++) {
-            this.inventory.push(this.createComponent(this.componentTypes[i], 20, 20 + 40 * i));
+            this.inventory.push(this.createComponent(this.componentTypes[i], (i % 2 == 0) ? 5 : 50, 25 + 40 * Math.floor(i / 2)));
             //add the component's graphics to the inventory's graphics' Group
             this.graphics.add(this.inventory[i].graphics);
 

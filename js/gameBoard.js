@@ -2,12 +2,12 @@ var width, height;
 var stage, layer;
 document.getElementById("body").onload = function () { playGame() };
 
-var wirebox = new Wire(175, 45, 900, 360);
-var box1 = new Box(350, 20, 100, 100);
-var box2 = new Box(600, 100, 100, 100);
-var box3 = new Box(450, 200, 100, 100);
-var box4 = new Box(250, 200, 100, 100);
-var box5 = new Box(150, 100, 100, 100);
+var wirebox = new Wire(175, 35, 900, 360);
+var box1 = new Box(350, 15, 100, 100);
+var box2 = new Box(600, 90, 100, 100);
+var box3 = new Box(450, 190, 100, 100);
+var box4 = new Box(250, 190, 100, 100);
+var box5 = new Box(150, 90, 100, 100);
 
 var boxes = [box1, box2, box3, box4, box5];
 
@@ -23,9 +23,22 @@ function playGame() {
     });
     layer = new Konva.Layer();
     stage.add(layer);
+
+    //citcuit's fixed background
+    rect = new Konva.Rect({
+        width: 1100,
+        height: 500,
+        fill: '#E7E6E6',
+        x: 220,
+        y: 0
+    });
+    layer.add(rect);
+
+    //question display
+    question = new Question();
+    question.draw(layer, 1, 0, 510, 1320, 100);
+
     //makes wire and empty boxes
-
-
     wirebox.drawBox();
     layer.add(wirebox.graphics);
 
@@ -34,10 +47,12 @@ function playGame() {
         layer.add(boxes[i].graphics);
     }
 
-
     inventory = new Inventory(1);
     layer.add(inventory.graphics);
 
+    checkButton = new Button(590, 265, "images/check.png", "images/check_pressed.png");
+    layer.add(checkButton.graphics);
+    checkButton.graphics.on("click", updateBoxContent);
 
     /*layer.on('dragend', function (e) {
         var target = e.target;
@@ -52,6 +67,10 @@ function playGame() {
         checkCircuit();
     });*/
 
+
+    //add amperemeter
+    amperemetere = new Amperemeter(0, 535, 25);
+    layer.add(amperemetere.graphics);
     scientist = new Scientist("HINT", 600, 150);
     layer.add(scientist.graphics);
     // use event delegation to update pointer style
@@ -104,10 +123,20 @@ function checkCircuit() {
         //correctAnswer();
         console.log("correct!");
         scientist.setState("CORRECT");
+        for (let c = 0; c < inventory.inventory.length; c++) {
+            if (inventory.inventory[c].getType() == "LIGHTBULB") {
+                inventory.inventory[c].turnOn();
+            }
+        }
     } else {
         //wrongAnswer();
         console.log("wrong!");
         scientist.setState("INCORRECT");
+        for (let c = 0; c < inventory.inventory.length; c++) {
+            if (inventory.inventory[c].getType() == "LIGHTBULB") {
+                inventory.inventory[c].turnOff();
+            }
+        }
     }
 
 }

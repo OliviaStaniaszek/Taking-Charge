@@ -37,10 +37,10 @@ h2 {
   color: rgba(79, 113, 116, 0.72);
 }
 
-#slider{
-  position:absolute ;
+#slider {
+  position: absolute;
   bottom: 50px;
-  right:20px;
+  right: 20px;
   width: 235px;
 }
 
@@ -132,4 +132,15 @@ h2 {
 
 .levels img {
   width: 100px;
+}
+
+h1 {
+  font-family: 'Audiowide';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 0.1em;
+  color: #4F7174;
+  padding-left: 15px;
+
 }

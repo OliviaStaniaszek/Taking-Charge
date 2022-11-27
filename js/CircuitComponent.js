@@ -1,7 +1,7 @@
 
 class CircuitComponent {
     //every circuit component has a resistance, type, location and graphics.
-    constructor(resistance = 0, type = "EMPTY", x, y, imgPath) {
+    constructor(resistance = 0, type = "EMPTY", x, y, imgPath, draggable = true) {
         this.resistance = resistance;
         this.type = type;
         this.x = x;
@@ -10,7 +10,7 @@ class CircuitComponent {
             x: x,
             y: y,
             rotation: 0,
-            draggable: true
+            draggable: draggable
         });
         this.setImage(x, y, imgPath);
 
@@ -31,7 +31,7 @@ class CircuitComponent {
         return (this.type);
     } //return String
 
-    setImage(x, y, imgPath) {
+    setImage(x, y, imgPath, text = "") {
         //to empty the graphics' group container
         this.graphics.removeChildren();
         this.img = new Konva.Image({
@@ -39,9 +39,6 @@ class CircuitComponent {
             y: y,
             width: 73,
             height: 65,
-            // stroke: 'red',
-            // strokeWidth: 10,
-
         });
 
         var imageObj1 = new Image();
@@ -54,10 +51,19 @@ class CircuitComponent {
         imageObj1.src = imgPath;
         this.graphics.add(this.img);
 
+        var simpleText = new Konva.Text({
+            x: x + 15,
+            y: y - 10,
+            text: text,
+            fontSize: 12,
+            fontFamily: 'Calibri',
+            fill: 'black',
+        });
+        this.graphics.add(simpleText);
+
     }
 
     getX() {
-
         return (this.x);
     }
 
@@ -68,9 +74,6 @@ class CircuitComponent {
     getRect() {
         return (this.img.getClientRect);
     }
-
-
-
 }
 
 
@@ -90,7 +93,6 @@ class Switch extends CircuitComponent {
 
             // console.log(this.me.me.closed);
         });
-
     }
 
     isClosed() {
@@ -109,7 +111,6 @@ class Switch extends CircuitComponent {
         console.log('open');
         this.setImage(this.x, this.y, 'images/switch_off.png');
         this.closed = false;
-
     }
 }
 
@@ -128,7 +129,6 @@ class Resistor extends CircuitComponent {
             fontSize: 10,
             fontFamily: 'Calibri',
             fill: 'black',
-
         });
 
         this.graphics.add(simpleText);
@@ -141,7 +141,16 @@ class Battery extends CircuitComponent {
         super(0, "BATTERY", x, y, 'images/battery.png');
         this.voltage = voltage;
         this.graphics.me = this;
+        var simpleText = new Konva.Text({
+            x: this.img.width() / 2,
+            y: this.img.y(),
+            text: '6 V',
+            fontSize: 10,
+            fontFamily: 'Calibri',
+            fill: 'black',
+        });
 
+        this.graphics.add(simpleText);
     }
 
     getVoltage() {
@@ -150,13 +159,26 @@ class Battery extends CircuitComponent {
 
 }
 
+class Amperemeter extends CircuitComponent {
+    constructor(ampere, x, y) {
+        super(0, "AMPEREMETER", x, y, 'images/amperemeter.png', false);
+        this.x = x;
+        this.y = y;
+        this.ampere = ampere;
+        this.graphics.me = this;
+        this.setImage(x, y, 'images/amperemeter.png', ampere + " A");
+    }
+
+    setAmpere(ampere) {
+        return this.setImage(this.x, this.y, 'images/amperemeter.png', ampere + " A");
+    }
+}
+
 class LightBulb extends CircuitComponent {
     constructor(x, y, on) {
-        super(9.5, "LIGHT_BULB", x, y, on ? 'images/lightbulb_on.png' : 'images/lightbulb_off.png');
+        super(9.5, "LIGHTBULB", x, y, on ? 'images/lightbulb_off.png' : 'images/lightbulb_off.png');
         this.on = on;
         this.graphics.me = this;
-
-
     }
 
     isOn() {
@@ -164,20 +186,20 @@ class LightBulb extends CircuitComponent {
     }
 
     turnOn() {
+        console.log("turnOn");
         this.on = true;
         this.setImage(this.x, this.y, 'images/lightbulb_on.png');
     }
 
     turnOff() {
+        console.log("turnOff");
         this.on = false;
         this.setImage(this.x, this.y, 'images/lightbulb_off.png');
-
     }
-
-
-
-
 }
+
+
+
 
 class Thermistor extends CircuitComponent {
 
@@ -189,7 +211,7 @@ class Thermistor extends CircuitComponent {
         var text = new Konva.Text({
             x: stage.width() / 1.2,
             y: 625,
-            text:'Thermistor resistance: ' ,
+            text: 'Thermistor resistance: ',
             fontSize: 22,
             fontFamily: 'Calibri',
             fill: 'blue',
@@ -201,12 +223,12 @@ class Thermistor extends CircuitComponent {
         var textValue = new Konva.Text({
             x: stage.width() / 1.03,
             y: 625,
-            text:'0' ,
+            text: '0',
             fontSize: 22,
             fontFamily: 'Calibri',
             fill: 'blue',
         });
-        
+
         var slider = document.getElementById('slider');
         slider.oninput = function () {
             textValue.text(slider.value);
@@ -214,8 +236,8 @@ class Thermistor extends CircuitComponent {
             this.resistance = parseInt(slider.value);
             console.log(this.resistance);
             return this.resistance;
-        }  
-        
+        }
+
     }
 }
 
