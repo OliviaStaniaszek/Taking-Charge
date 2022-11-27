@@ -123,6 +123,7 @@ function checkCircuit() {
         //correctAnswer();
         console.log("correct!");
         scientist.setState("CORRECT");
+        correctSound();
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOn();
@@ -132,6 +133,7 @@ function checkCircuit() {
         //wrongAnswer();
         console.log("wrong!");
         scientist.setState("INCORRECT");
+        incorrectSound();
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOff();
