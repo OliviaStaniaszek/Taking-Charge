@@ -26,7 +26,7 @@ class Inventory {
         this.level = level;
         //initiates the componentTypes array based on the level provided
         switch (level) {
-            //level 1
+            //level 1jht
             case 1:
                 this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_30", "RESISTOR_50", "THERMISTOR"];
                 break;
