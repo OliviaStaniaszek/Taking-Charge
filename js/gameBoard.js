@@ -71,7 +71,7 @@ function playGame() {
     //add amperemeter
     amperemetere = new Amperemeter(0, 535, 25);
     layer.add(amperemetere.graphics);
-    scientist = new Scientist("HINT", 600, 150);
+    scientist = new Scientist("HINT", 640, 200); //was 600, 150);
     layer.add(scientist.graphics);
     // use event delegation to update pointer style
     layer.on('mouseover', function (evt) {
@@ -123,6 +123,8 @@ function checkCircuit() {
         //correctAnswer();
         console.log("correct!");
         scientist.setState("CORRECT");
+        correctSound();
+        scientist.correctAnimation();
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOn();
@@ -132,6 +134,8 @@ function checkCircuit() {
         //wrongAnswer();
         console.log("wrong!");
         scientist.setState("INCORRECT");
+        incorrectSound();
+        scientist.wrongAnimation();
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOff();
