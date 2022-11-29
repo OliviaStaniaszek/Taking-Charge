@@ -13,7 +13,7 @@ class Box {
     };
 
     drawBox() {
-        console.log('box created');
+        // console.log('box created');
 
         this.graphics.removeChildren();
         this.rect1 = new Konva.Rect({
@@ -63,7 +63,7 @@ class Wire extends Box {
     };
 
     drawBox() {
-        console.log('box created');
+        // console.log('box created');
 
         this.graphics.removeChildren();
         this.rect1 = new Konva.Rect({
@@ -79,6 +79,49 @@ class Wire extends Box {
         // add the shape to the layer
         //   layer.add(rect1);
         this.graphics.add(this.rect1);
+    }
+
+    contains() {
+        return (null); //not applicable 
+    }
+}
+
+
+class TextBox extends Box {
+    constructor(x, y, width, text) {
+        super(x, y, width);
+        this.text = text; 
+    };
+
+    drawBox() {
+        // console.log('box created');
+
+        this.complexText = new Konva.Text({
+            x: this.x,
+            y: this.y,
+            text: this.text,
+            fontSize: 18,
+            fontFamily: 'Calibri',
+            fill: '#555',
+            width: this.width,
+            padding: 20,
+            align: 'center',
+        });
+
+        this.rect = new Konva.Rect({
+            x: this.x,
+            y: this.y,
+            stroke: '#555',
+            strokeWidth: 5,
+            fill: '#ddd',
+            width: this.width,
+            height: this.complexText.height(),
+        });
+    
+
+        this.graphics.add(this.rect);
+        this.graphics.add(this.complexText);
+        console.log("hint created");
     }
 
     contains() {

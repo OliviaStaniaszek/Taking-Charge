@@ -8,6 +8,7 @@ var box2 = new Box(600, 90, 100, 100);
 var box3 = new Box(450, 190, 100, 100);
 var box4 = new Box(250, 190, 100, 100);
 var box5 = new Box(150, 90, 100, 100);
+var hintbox = new TextBox(300,100, 300, 'Click the scientist if you need a hint');
 
 var boxes = [box1, box2, box3, box4, box5];
 
@@ -41,8 +42,10 @@ function playGame() {
 
     //makes wire and empty boxes
     wirebox.drawBox();
-    layer.add(wirebox.graphics);
+    hintbox.drawBox();
 
+    layer.add(wirebox.graphics);
+    layer.add(hintbox.graphics);
     for (let i = 0; i < 5; i++) { //create boxes for q1
         boxes[i].drawBox();
         layer.add(boxes[i].graphics);
@@ -128,6 +131,7 @@ function checkCircuit() {
         scientist.setState("CORRECT");
         correctSound();
         // var startTime = Date.now();
+        // scientist.stopAnimation();
         scientist.correctAnimation();
         var background = stage.findOne('#backdrop');
         background.fill('#ccffcc');
