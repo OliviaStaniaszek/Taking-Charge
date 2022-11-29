@@ -14,10 +14,10 @@ class Inventory {
         });
         //inventory's fixed background
         var rect = new Konva.Rect({
-            width: 200,
+            width: 195,
             height: 500,
             fill: '#E7E6E6',
-            x: 0,
+            x: 10,
             y: 0
         });
         this.graphics.add(rect);

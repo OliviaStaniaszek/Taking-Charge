@@ -36,7 +36,7 @@ function playGame() {
 
     //question display
     question = new Question();
-    question.draw(layer, 1, 0, 510, 1320, 100);
+    question.draw(layer, 1, 10, 510, 1310, 100);
 
     //makes wire and empty boxes
     wirebox.drawBox();
