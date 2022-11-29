@@ -1,4 +1,6 @@
 
+var anim;
+
 class Scientist {
     //the constructor recives the scientist's state as well as the location(x,y)
     constructor(state, x, y) {
@@ -73,14 +75,18 @@ class Scientist {
         var period = 1500;
         // in ms
         var centerY = this.y; 
-
-        var anim = new Konva.Animation(function (frame) {
+ 
+        anim = new Konva.Animation(function (frame) {
             scientist.y(
                 amplitude * Math.sin((frame.time * 2 * Math.PI) / period) + centerY
             );
         }, layer);
         console.log("correct animation start");
         anim.start();
+        
+        
+
+        //use Date.now() to stop after a second or so https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
     }
 
     wrongAnimation(){
@@ -88,15 +94,19 @@ class Scientist {
         var angularSpeed = 90;
         // var angle = 25;
 
-        var anim = new  Konva.Animation(function (frame) {
+        anim = new  Konva.Animation(function (frame) {
         
             var angleDiff = (frame.timeDiff * angularSpeed) / 1000;
-            // scientist.rotate(angleDiff);
+            scientist.rotate(angleDiff);
 
             // x = 640;
             // scientist.y = 200;
         }, layer);
 
       anim.start();
+    }
+
+    stopAnimation(){
+        anim.stop();
     }
 }

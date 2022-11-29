@@ -30,7 +30,8 @@ function playGame() {
         height: 500,
         fill: '#E7E6E6',
         x: 220,
-        y: 0
+        y: 0,
+        id: 'backdrop',
     });
     layer.add(rect);
 
@@ -122,9 +123,26 @@ function checkCircuit() {
     if (hasBattery() && noEmptyCells() && switchesAreClosed()) {
         //correctAnswer();
         console.log("correct!");
+
+        
         scientist.setState("CORRECT");
         correctSound();
+        // var startTime = Date.now();
         scientist.correctAnimation();
+        var background = stage.findOne('#backdrop');
+        background.fill('#ccffcc');
+
+
+        // var endTime = new Date();
+        // endTime.setSeconds(startTime.getSeconds() + 3);
+        // while(Date.now() <= startTime.getSeconds()){
+        //     // console.log(Date.now());
+        // }
+        // if (Date.now() > endTime){
+        //     console.log(startTime, Date.now());
+        //     scientist.stopAnimation();
+        // }
+
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOn();
@@ -136,6 +154,8 @@ function checkCircuit() {
         scientist.setState("INCORRECT");
         incorrectSound();
         scientist.wrongAnimation();
+        var background = stage.findOne('#backdrop');
+        background.fill('#ffcccc');
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOff();
