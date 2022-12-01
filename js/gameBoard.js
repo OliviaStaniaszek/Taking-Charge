@@ -1,5 +1,6 @@
 var width, height;
 var stage, layer;
+
 document.getElementById("body").onload = function () { playGame() };
 
 var wirebox = new Wire(175, 35, 900, 360);
@@ -119,19 +120,38 @@ function updateBoxContent() {
 
 // checks if we got the question right!
 function checkCircuit() {
+    amperemetere.setAmpere(0);
+    answerIsCorrect = false;
+
     if (hasBattery() && noEmptyCells() && switchesAreClosed()) {
-        //correctAnswer();
-        console.log("correct!");
-        scientist.setState("CORRECT");
-        correctSound();
-        scientist.correctAnimation();
-        for (let c = 0; c < inventory.inventory.length; c++) {
-            if (inventory.inventory[c].getType() == "LIGHTBULB") {
-                inventory.inventory[c].turnOn();
+
+        totalResistance = 0;
+        voltage = 0;
+        for (let i = 0; i < boxes.length; i++) {
+            if (boxes[i].me.getType() == "LIGHTBULB") {
+                boxes[i].me.turnOn();
             }
+            if (boxes[i].me.getType() == "BATTERY") {
+                voltage += boxes[i].me.getVoltage();
+                console.log("voltage: " + voltage);
+            }
+            totalResistance += boxes[i].me.getResistance();
+            console.log("resistance: " + totalResistance);
+
         }
-    } else {
-        //wrongAnswer();
+        current = voltage / totalResistance;
+        amperemetere.setAmpere(current);
+        if (current == question.getAnswerAmpere(1)) {
+            //correctAnswer();
+            console.log("correct!");
+            scientist.setState("CORRECT");
+            correctSound();
+            scientist.correctAnimation();
+            answerIsCorrect = true;
+        }
+    }
+
+    if (!answerIsCorrect) {
         console.log("wrong!");
         scientist.setState("INCORRECT");
         incorrectSound();

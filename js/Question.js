@@ -3,11 +3,11 @@ class Question {
         this.questions = [
             {
                 // Battery = 6[V], Resistor = 3[Ohm] --> V/R=I --> 6/3=2[A]
-                question: "QUESTION: \n \n build a series circuit with a battery, light bulb, switch and resistors. use the resistors to create circuit current of 2A",
+                question: "QUESTION: \n \n build a series circuit with a battery, light bulb, switch and resistors. use the resistors to create circuit current of 1A",
                 hint: "",
                 level: 1,
-                answerAmpere: 10,
-                answerComponents: ["BATTERY", "RESISTOR_7K", "SWITCH"]
+                answerAmpere: 1,
+                answerComponents: ["BATTERY", "RESISTOR_4K", "RESISTOR_2K", "LIGHTBULB", "SWITCH"]
             },
             {
                 question: "build a series circuit with a battery, light bulb, and switch. use the resistors and the ampere meter so that the circuit current is X.",

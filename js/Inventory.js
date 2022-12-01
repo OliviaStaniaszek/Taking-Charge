@@ -28,7 +28,7 @@ class Inventory {
         switch (level) {
             //level 1jht
             case 1:
-                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "RESISTOR_30", "RESISTOR_50", "THERMISTOR"];
+                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_2", "RESISTOR_4", "RESISTOR_8"];
                 break;
             default:
                 this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "THERMISTOR"];

@@ -170,13 +170,13 @@ class Amperemeter extends CircuitComponent {
     }
 
     setAmpere(ampere) {
-        return this.setImage(this.x, this.y, 'images/amperemeter.png', ampere + " A");
+        return this.setImage(this.x, this.y, 'images/amperemeter.png', ampere.toFixed(1) + " A");
     }
 }
 
 class LightBulb extends CircuitComponent {
     constructor(x, y, on) {
-        super(9.5, "LIGHTBULB", x, y, on ? 'images/lightbulb_off.png' : 'images/lightbulb_off.png');
+        super(0, "LIGHTBULB", x, y, on ? 'images/lightbulb_off.png' : 'images/lightbulb_off.png');
         this.on = on;
         this.graphics.me = this;
     }
