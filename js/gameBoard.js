@@ -78,12 +78,15 @@ function playGame() {
     layer.add(amperemetere.graphics);
     scientist = new Scientist("HINT", 640, 200); //was 600, 150);
     layer.add(scientist.graphics);
+    scientist.graphics.on("click", () => alert(question.getHint(1)));
+
     // use event delegation to update pointer style
     layer.on('mouseover', function (evt) {
         var shape = evt.target;
         document.body.style.cursor = 'pointer';
         //shape.strokeEnabled(false);
     });
+
     layer.on('mouseout', function (evt) {
         var shape = evt.target;
         document.body.style.cursor = 'default';
@@ -127,108 +130,99 @@ function checkCircuit() {
     amperemetere.setAmpere(0);
     answerIsCorrect = false;
 
+    // is the circuit closed?
     if (hasBattery() && noEmptyCells() && switchesAreClosed()) {
-
         totalResistance = 0;
         voltage = 0;
         for (let i = 0; i < boxes.length; i++) {
             if (boxes[i].me.getType() == "LIGHTBULB") {
                 boxes[i].me.turnOn();
-                //correctAnswer();
-                console.log("correct!");
-
-
-                scientist.setState("CORRECT");
-                correctSound();
-                // var startTime = Date.now();
-                // scientist.stopAnimation();
-                scientist.correctAnimation();
-                var background = stage.findOne('#backdrop');
-                background.fill('#ccffcc');
-
-
-                // var endTime = new Date();
-                // endTime.setSeconds(startTime.getSeconds() + 3);
-                // while(Date.now() <= startTime.getSeconds()){
-                //     // console.log(Date.now());
-                // }
-                // if (Date.now() > endTime){
-                //     console.log(startTime, Date.now());
-                //     scientist.stopAnimation();
-                // }
-
-                for (let c = 0; c < inventory.inventory.length; c++) {
-                    if (inventory.inventory[c].getType() == "LIGHTBULB") {
-                        inventory.inventory[c].turnOn();
-                    }
-                    if (boxes[i].me.getType() == "BATTERY") {
-                        voltage += boxes[i].me.getVoltage();
-                        console.log("voltage: " + voltage);
-                    }
-                    totalResistance += boxes[i].me.getResistance();
-                    console.log("resistance: " + totalResistance);
-
-                }
-                current = voltage / totalResistance;
-                amperemetere.setAmpere(current);
-                if (current == question.getAnswerAmpere(1)) {
-                    //correctAnswer();
-                    console.log("correct!");
-                    scientist.setState("CORRECT");
-                    correctSound();
-                    scientist.correctAnimation();
-                    answerIsCorrect = true;
-                }
             }
-
-            if (!answerIsCorrect) {
-                console.log("wrong!");
-                scientist.setState("INCORRECT");
-                incorrectSound();
-                scientist.wrongAnimation();
-                var background = stage.findOne('#backdrop');
-                background.fill('#ffcccc');
-                for (let c = 0; c < inventory.inventory.length; c++) {
-                    if (inventory.inventory[c].getType() == "LIGHTBULB") {
-                        inventory.inventory[c].turnOff();
-                    }
-                }
+            if (boxes[i].me.getType() == "BATTERY") {
+                voltage += boxes[i].me.getVoltage();
+                console.log("voltage: " + voltage);
             }
+            totalResistance += boxes[i].me.getResistance();
+            console.log("resistance: " + totalResistance);
 
         }
+        current = voltage / totalResistance;
+        amperemetere.setAmpere(current);
+        if (current == question.getAnswerAmpere(1)) {
+            //correctAnswer();
+            console.log("correct!");
+            scientist.setState("CORRECT");
+            correctSound();
+            scientist.correctAnimation();
+            answerIsCorrect = true;
+            // var startTime = Date.now();
+            // scientist.stopAnimation();
+            scientist.correctAnimation();
+            var background = stage.findOne('#backdrop');
+            background.fill('#ccffcc');
 
-        function hasBattery() {
-            var result = false;
-            boxes.forEach(function (i) {
+            // var endTime = new Date();
+            // endTime.setSeconds(startTime.getSeconds() + 3);
+            // while(Date.now() <= startTime.getSeconds()){
+            //     // console.log(Date.now());
+            // }
+            // if (Date.now() > endTime){
+            //     console.log(startTime, Date.now());
+            //     scientist.stopAnimation();
+            // }
 
-                if (i.me != undefined && i.me.getType() == "BATTERY") {
-                    result = true;
-                }
-            });
-            console.log("battery: " + result);
-            return result;
         }
+    }
 
-        function noEmptyCells() {
-            var result = true;
-            boxes.forEach(function (i) {
-
-                if (i.me == undefined) {
-                    result = false;
-                }
-            });
-            console.log("noEmptyCells: " + result);
-            return result;
+    if (!answerIsCorrect) {
+        console.log("wrong!");
+        scientist.setState("INCORRECT");
+        incorrectSound();
+        scientist.wrongAnimation();
+        var background = stage.findOne('#backdrop');
+        background.fill('#ffcccc');
+        for (let c = 0; c < inventory.inventory.length; c++) {
+            if (inventory.inventory[c].getType() == "LIGHTBULB") {
+                inventory.inventory[c].turnOff();
+            }
         }
+    }
 
-        function switchesAreClosed() {
-            var result = true;
-            boxes.forEach(function (i) {
+}
 
-                if (i.me != undefined && i.me.getType() == "SWITCH" && !i.me.isClosed()) {
-                    result = false;
-                }
-            });
-            console.log("switchesAreClosed" + result);
-            return result;
+function hasBattery() {
+    var result = false;
+    boxes.forEach(function (i) {
+
+        if (i.me != undefined && i.me.getType() == "BATTERY") {
+            result = true;
         }
+    });
+    console.log("battery: " + result);
+    return result;
+}
+
+function noEmptyCells() {
+    var result = true;
+    boxes.forEach(function (i) {
+
+        if (i.me == undefined) {
+            result = false;
+        }
+    });
+    console.log("noEmptyCells: " + result);
+    return result;
+}
+
+function switchesAreClosed() {
+    var result = true;
+    boxes.forEach(function (i) {
+
+        if (i.me != undefined && i.me.getType() == "SWITCH" && !i.me.isClosed()) {
+            result = false;
+        }
+    });
+    console.log("switchesAreClosed" + result);
+    return result;
+}
+

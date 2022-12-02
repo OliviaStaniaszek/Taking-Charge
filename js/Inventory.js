@@ -31,7 +31,7 @@ class Inventory {
                 this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_2", "RESISTOR_4", "RESISTOR_8"];
                 break;
             default:
-                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_10", "THERMISTOR"];
+                this.componentTypes = ["LIGHTBULB", "SWITCH", "BATTARY", "RESISTOR_2", "RESISTOR_4", "RESISTOR_8"];
                 break;
         }
         //build the inventory array of components,calling the createComponent function to create the appropriate circuit components for the given level
@@ -58,8 +58,6 @@ class Inventory {
                 return (new Battery(x, y, 6));
             case "SWITCH":
                 return (new Switch(x, y, false));
-            case "THERMISTOR":
-                return (new Thermistor(x, y, resistance));
         }
 
     }

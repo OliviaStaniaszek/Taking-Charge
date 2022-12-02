@@ -16,7 +16,7 @@ class Scientist {
             offset: { //sets origin to centre rather than top right (used for rotation)
                 x: 80,
                 y: 90,
-              },
+            }
         });
         this.setState(this.state);
         this.graphics.on('pointerclick', function () {
@@ -31,7 +31,7 @@ class Scientist {
             // box.drawBox();
             // layer.add(hint);
         });
-        
+
     }
 
 
@@ -82,13 +82,13 @@ class Scientist {
     }
 
 
-    correctAnimation(){
+    correctAnimation() {
         var scientist = this.graphics;
         var amplitude = 25;
         var period = 1500;
         // in ms
-        var centerY = this.y; 
- 
+        var centerY = this.y;
+
         anim = new Konva.Animation(function (frame) {
             scientist.y(
                 amplitude * Math.sin((frame.time * 2 * Math.PI) / period) + centerY
@@ -96,30 +96,28 @@ class Scientist {
         }, layer);
         console.log("correct animation start");
         anim.start();
-        
-        
+
+
 
         //use Date.now() to stop after a second or so https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
     }
 
-    wrongAnimation(){
+    wrongAnimation() {
         var scientist = this.graphics;
         var angularSpeed = 90;
         // var angle = 25;
+        scientist.offset = { x: scientist.width / 2, y: scientist.height / 2 };
+        // anim = new Konva.Animation(function (frame) {
+        //     var angleDiff = (frame.timeDiff * angularSpeed) / 1000;
+        //     scientist.rotate(angleDiff);
+        //     // x = 640;
+        //     // scientist.y = 200;
+        // }, layer);
 
-        anim = new  Konva.Animation(function (frame) {
-        
-            var angleDiff = (frame.timeDiff * angularSpeed) / 1000;
-            scientist.rotate(angleDiff);
-
-            // x = 640;
-            // scientist.y = 200;
-        }, layer);
-
-      anim.start();
+        //anim.start();
     }
 
-    stopAnimation(){
+    stopAnimation() {
         anim.stop();
 
     }

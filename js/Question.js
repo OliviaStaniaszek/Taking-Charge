@@ -4,7 +4,7 @@ class Question {
             {
                 // Battery = 6[V], Resistor = 3[Ohm] --> V/R=I --> 6/3=2[A]
                 question: "QUESTION: \n \n build a series circuit with a battery, light bulb, switch and resistors. use the resistors to create circuit current of 1A",
-                hint: "",
+                hint: "Hint: remember that based on Ohm's law, in a series circuit V/R=I",
                 level: 1,
                 answerAmpere: 1,
                 answerComponents: ["BATTERY", "RESISTOR_4K", "RESISTOR_2K", "LIGHTBULB", "SWITCH"]
