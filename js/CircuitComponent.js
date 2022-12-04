@@ -37,8 +37,8 @@ class CircuitComponent {
         this.img = new Konva.Image({
             x: x,
             y: y,
-            width: 100, //73,
-            height: 100, //65,
+            width: 90, //73,
+            height: 90, //65,
         });
 
         var imageObj1 = new Image();
@@ -130,10 +130,10 @@ class Resistor extends CircuitComponent {
         this.graphics.me = this;
 
         var simpleText = new Konva.Text({
-            x: this.img.width() / 2,
+            x: this.img.width()/2,
             y: this.img.y(),
             text: this.resistance.toString() + ' Ω',
-            fontSize: 10,
+            fontSize: 20,
             fontFamily: 'Calibri',
             fill: 'black',
         });
@@ -153,7 +153,7 @@ class Battery extends CircuitComponent {
             x: this.img.width() / 2,
             y: this.img.y(),
             text: '6 V',
-            fontSize: 10,
+            fontSize: 20,
             fontFamily: 'Calibri',
             fill: 'black',
         });

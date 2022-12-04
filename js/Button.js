@@ -30,7 +30,7 @@ class Button {
         this.img = new Konva.Image({
             x: x,
             y: y,
-            width: 73,
+            width: 150,
             height: 65,
             // stroke: 'red',
             // strokeWidth: 10,

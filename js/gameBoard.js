@@ -52,7 +52,7 @@ function playGame() {
     inventory = new Inventory(1);
     layer.add(inventory.graphics);
 
-    checkButton = new Button(590, 265, "images/check.png", "images/check_pressed.png");
+    checkButton = new Button(560, 265, "images/check.png", "images/check_pressed.png");
     layer.add(checkButton.graphics);
     checkButton.graphics.on("click", updateBoxContent);
 
