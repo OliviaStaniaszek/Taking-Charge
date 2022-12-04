@@ -21,8 +21,7 @@ class Scientist {
         this.setState(this.state);
         this.graphics.on('pointerclick', function () {
             console.log("clicked");
-            var hint = stage.findOne('#hintText');
-            hint.text('new text');
+            
             // x,y,width,text
             // var hint = new TextBox(300,300, 100, 'hello there');
             // hint.drawBox();
