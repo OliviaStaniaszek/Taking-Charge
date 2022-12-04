@@ -37,8 +37,8 @@ class CircuitComponent {
         this.img = new Konva.Image({
             x: x,
             y: y,
-            width: 73,
-            height: 65,
+            width: 100, //73,
+            height: 100, //65,
         });
 
         var imageObj1 = new Image();
@@ -81,7 +81,9 @@ class CircuitComponent {
 class Switch extends CircuitComponent {
     constructor(x, y, closed) {
         //initiate the parent CircuitComponent constructor with the spesic characteristics of the Switch
-        super(0, "SWITCH", x, y, closed ? 'images/switch_on.png' : 'images/switch_off.png');
+        // super(0, "SWITCH", x, y, closed ? 'images/switch_on.png' : 'images/switch_off.png');
+        super(0, "SWITCH", x, y, closed ? 'images/circuit symbols/switch closed.png' : 'images/circuit symbols/switch open.png');
+
         this.closed = closed;
         this.graphics.me = this;
 
@@ -103,13 +105,17 @@ class Switch extends CircuitComponent {
 
     setClose() {
         console.log("close");
-        this.setImage(this.x, this.y, 'images/switch_on.png');
+        // this.setImage(this.x, this.y, 'images/switch_on.png');
+        this.setImage(this.x, this.y, 'images/circuit symbols/switch closed.png');
+
         this.closed = true;
     }
 
     setOpen() {
         console.log('open');
-        this.setImage(this.x, this.y, 'images/switch_off.png');
+        // this.setImage(this.x, this.y, 'images/switch_off.png');
+        this.setImage(this.x, this.y, 'images/circuit symbols/switch open.png');
+
         this.closed = false;
     }
 }
@@ -118,7 +124,8 @@ class Resistor extends CircuitComponent {
 
     constructor(x, y, resistance) {
 
-        super(resistance, "RESISTOR", x, y, 'images/resistor.png');
+        // super(resistance, "RESISTOR", x, y, 'images/resistor.png');
+        super(resistance, "RESISTOR", x, y, 'images/circuit symbols/resistor.png');
         this.resistance = resistance;
         this.graphics.me = this;
 
@@ -138,7 +145,8 @@ class Resistor extends CircuitComponent {
 
 class Battery extends CircuitComponent {
     constructor(x, y, voltage) {
-        super(0, "BATTERY", x, y, 'images/battery.png');
+        // super(0, "BATTERY", x, y, 'images/battery.png');
+        super(0, "BATTERY", x, y, 'images/circuit symbols/battery.png');
         this.voltage = voltage;
         this.graphics.me = this;
         var simpleText = new Konva.Text({
@@ -161,22 +169,28 @@ class Battery extends CircuitComponent {
 
 class Amperemeter extends CircuitComponent {
     constructor(ampere, x, y) {
-        super(0, "AMPEREMETER", x, y, 'images/amperemeter.png', false);
+        // super(0, "AMPEREMETER", x, y, 'images/amperemeter.png', false);
+        super(0, "AMPEREMETER", x, y, 'images/circuit symbols/ammeter.png', false);
         this.x = x;
         this.y = y;
         this.ampere = ampere;
         this.graphics.me = this;
-        this.setImage(x, y, 'images/amperemeter.png', ampere + " A");
+        // this.setImage(x, y, 'images/amperemeter.png', ampere + " A");
+        this.setImage(x, y, 'images/circuit symbols/ammeter.png', ampere + " A");
+
     }
 
     setAmpere(ampere) {
-        return this.setImage(this.x, this.y, 'images/amperemeter.png', ampere.toFixed(1) + " A");
+        // return this.setImage(this.x, this.y, 'images/amperemeter.png', ampere.toFixed(1) + " A");
+        return this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', ampere.toFixed(1) + " A");
+
     }
 }
 
 class LightBulb extends CircuitComponent {
     constructor(x, y, on) {
-        super(0, "LIGHTBULB", x, y, on ? 'images/lightbulb_off.png' : 'images/lightbulb_off.png');
+        // super(0, "LIGHTBULB", x, y, on ? 'images/lightbulb_off.png' : 'images/lightbulb_off.png');
+        super(0, "LIGHTBULB", x, y, on ? 'images/circuit symbols/lamp on.png' : 'images/circuit symbols/lamp.png');
         this.on = on;
         this.graphics.me = this;
     }
@@ -188,13 +202,16 @@ class LightBulb extends CircuitComponent {
     turnOn() {
         console.log("turnOn");
         this.on = true;
-        this.setImage(this.x, this.y, 'images/lightbulb_on.png');
+        // this.setImage(this.x, this.y, 'images/lightbulb_on.png');
+        this.setImage(this.x, this.y, 'images/circuit symbols/lamp on.png');
+
     }
 
     turnOff() {
         console.log("turnOff");
         this.on = false;
-        this.setImage(this.x, this.y, 'images/lightbulb_off.png');
+        // this.setImage(this.x, this.y, 'images/lightbulb_off.png');
+        this.setImage(this.x, this.y, 'images/circuit symbols/lamp.png');
     }
 }
 
