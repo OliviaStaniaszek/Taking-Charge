@@ -257,3 +257,53 @@ p {
     opacity: 1
   }
 }
+
+div#questionBox {
+  background-color: #E7E6E6;
+  text-align: left;
+  margin: 10px;
+  width: 1310px;
+}
+
+div#questionBox h2{
+  text-align: left;
+  padding: 10px;
+  margin: 0;
+  letter-spacing: 0;
+}
+
+div#questionBox p{
+  text-align: left;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  padding: 10px;
+  margin: 0;
+  display: inline-block;
+  /* width: 1050px; */
+}
+
+#checkButton{
+  background-color: #D57C2F;
+  font-family: 'Nunito Sans';
+  font-weight: bold;
+  padding: 5px;
+  text-align: right;
+  margin: 5px;
+  display: inline-block;
+  padding: 16px 32px;
+  text-align: center;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  position: absolute;
+  bottom: 500px;
+  left: 1100px;
+  border-radius: 8px;
+  color: white;
+}
+
+#checkButton:hover {
+  background-color: #4F7174;
+  color: white;
+}

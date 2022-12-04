@@ -3,9 +3,9 @@ var stage, layer;
 
 document.getElementById("body").onload = function () { playGame() };
 
-var wirebox = new Wire(175, 35, 900, 360);
+var wirebox = new Wire(175, 35, 800, 360);
 var box1 = new Box(350, 15, 100, 100);
-var box2 = new Box(600, 90, 100, 100);
+var box2 = new Box(550, 90, 100, 100);
 var box3 = new Box(450, 190, 100, 100);
 var box4 = new Box(250, 190, 100, 100);
 var box5 = new Box(150, 90, 100, 100);
@@ -19,7 +19,7 @@ function playGame() {
     stage = new Konva.Stage({
         container: 'container',
         width: width,
-        height: height,
+        height: 600,//height,
 
     });
     layer = new Konva.Layer();
@@ -73,7 +73,7 @@ function playGame() {
     //add amperemeter
     amperemetere = new Amperemeter(0, 535, 25);
     layer.add(amperemetere.graphics);
-    scientist = new Scientist("HINT", 640, 200); //was 600, 150);
+    scientist = new Scientist("HINT", 620, 200); //was 600, 150);
     layer.add(scientist.graphics);
     scientist.graphics.on("click", () => alert(question.getHint(1)));
 

@@ -171,12 +171,12 @@ class Amperemeter extends CircuitComponent {
     constructor(ampere, x, y) {
         // super(0, "AMPEREMETER", x, y, 'images/amperemeter.png', false);
         super(0, "AMPEREMETER", x, y, 'images/circuit symbols/ammeter.png', false);
-        this.x = x;
-        this.y = y;
+        this.x = x-100;
+        this.y = y-25;
         this.ampere = ampere;
         this.graphics.me = this;
         // this.setImage(x, y, 'images/amperemeter.png', ampere + " A");
-        this.setImage(x, y, 'images/circuit symbols/ammeter.png', ampere + " A");
+        this.setImage(x-100, y-25, 'images/circuit symbols/ammeter.png', ampere + " A");
 
     }
 

@@ -35,8 +35,16 @@
         </a>
     </div>
 
-    <h1 id="level">Level 1</h1>
+    <h1 id="level">Level 1</h1> 
     <div id="container"></div>
+    <div id="questionBox">
+        <h2>Question:</h2>
+        <p id="questionText">
+            Build a series circuit with a battery, light bulb, switch and resistors. use the resistors to create circuit current of 1A
+        </p>
+        <p id="questionText">Drag and drop the components from the left into the empty boxes. Make sure to close any switches by double clicking them. If you get stuck, click the scientist for a hint</p>
+        <div id="checkButton" onclick="updateBoxContent()">Check Answer</div>
+    </div>
 
     <script src="js/Question.js"></script>
     <script src="js/Box.js"></script>
