@@ -1,5 +1,6 @@
-var width, height;
-var stage, layer;
+var layer;
+var sceneWidth = 1700;
+var sceneHeight = sceneWidth/3.5;
 
 document.getElementById("body").onload = function () { playGame() };
 
@@ -12,16 +13,16 @@ var box5 = new Box(150, 90, 100, 100);
 
 var boxes = [box1, box2, box3, box4, box5];
 
+var stage = new Konva.Stage({
+    container: 'container',
+    width: sceneWidth,
+    height: sceneHeight,
+
+});
+
 function playGame() {
     console.log("play game");
-    width = window.innerWidth;
-    height = window.innerHeight;
-    stage = new Konva.Stage({
-        container: 'container',
-        width: width,
-        height: 600,//height,
-
-    });
+    
     layer = new Konva.Layer();
     stage.add(layer);
 
@@ -38,7 +39,7 @@ function playGame() {
 
     //question display
     question = new Question();
-    question.draw(layer, 1, 10, 510, 1310, 100);
+    // question.draw(layer, 1, 10, 510, 1310, 100);
 
     //makes wire and empty boxes
     wirebox.drawBox();
@@ -52,9 +53,9 @@ function playGame() {
     inventory = new Inventory(1);
     layer.add(inventory.graphics);
 
-    checkButton = new Button(560, 265, "images/check.png", "images/check_pressed.png");
-    layer.add(checkButton.graphics);
-    checkButton.graphics.on("click", updateBoxContent);
+    // checkButton = new Button(560, 265, "images/check.png", "images/check_pressed.png");
+    // layer.add(checkButton.graphics);
+    // checkButton.graphics.on("click", updateBoxContent);
 
     /*layer.on('dragend', function (e) {
         var target = e.target;
@@ -90,6 +91,26 @@ function playGame() {
         //shape.strokeEnabled(true);
     });
 }
+
+// https://konvajs.org/docs/sandbox/Responsive_Canvas.html
+function fitStageIntoParentContainer(){
+    var container = document.querySelector('#stage-parent');
+
+    // now we need to fit stage into parent container
+    var containerWidth = container.offsetWidth;
+
+    // but we also make the full scene visible
+    // so we need to scale all objects on canvas
+    var scale = containerWidth / sceneWidth;
+
+    stage.width(sceneWidth * scale);
+    stage.height(sceneHeight * scale);
+    stage.scale({ x: scale, y: scale });
+}
+
+fitStageIntoParentContainer();
+// adapt the stage on any window resize
+window.addEventListener('resize', fitStageIntoParentContainer);
 
 function haveIntersection(r1, r2) {
     return !(

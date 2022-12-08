@@ -31,27 +31,28 @@ class Question {
     getAnswerComponents(level) {
         return this.questions[level - 1].answerComponents;
     }
-    draw(layer, level, x, y, width, height) {
+    
+    // draw(layer, level, x, y, width, height) {
 
-        var rect = new Konva.Rect({
-            width: width,
-            height: height,
-            fill: '#E7E6E6',
-            x: x,
-            y: y
-        });
-        layer.add(rect);
+    //     var rect = new Konva.Rect({
+    //         width: width,
+    //         height: height,
+    //         fill: '#E7E6E6',
+    //         x: x,
+    //         y: y
+    //     });
+    //     layer.add(rect);
 
-        var simpleText = new Konva.Text({
-            x: x + 10,
-            y: y + 25,
-            text: this.getQuestion(level),
-            fontSize: 22,
-            fontFamily: 'Nunito Sans',
-            fill: 'black',
+    //     var simpleText = new Konva.Text({
+    //         x: x + 10,
+    //         y: y + 25,
+    //         text: this.getQuestion(level),
+    //         fontSize: 22,
+    //         fontFamily: 'Nunito Sans',
+    //         fill: 'black',
 
-        });
+    //     });
 
-        layer.add(simpleText);
-    }
+    //     // layer.add(simpleText);
+    // }
 }

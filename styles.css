@@ -262,7 +262,8 @@ div#questionBox {
   background-color: #E7E6E6;
   text-align: left;
   margin: 10px;
-  width: 1310px;
+  width: 76.9%;
+  
 }
 
 div#questionBox h2{
@@ -270,6 +271,8 @@ div#questionBox h2{
   padding: 10px;
   margin: 0;
   letter-spacing: 0;
+  display: inline;
+  font-size: 35px;
 }
 
 div#questionBox p{
@@ -277,11 +280,10 @@ div#questionBox p{
   font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 20px;
   padding: 10px;
   margin: 0;
-  display: inline-block;
-  /* width: 1050px; */
+
 }
 
 #checkButton{
@@ -290,17 +292,16 @@ div#questionBox p{
   font-weight: bold;
   padding: 5px;
   text-align: right;
-  margin: 5px;
-  display: inline-block;
+  margin: 10px;
   padding: 16px 32px;
   text-align: center;
   transition-duration: 0.2s;
   cursor: pointer;
-  position: absolute;
-  bottom: 500px;
+  bottom: 200px;
   left: 1100px;
   border-radius: 8px;
   color: white;
+  float: right;
 }
 
 #checkButton:hover {
