@@ -36,7 +36,7 @@ class Inventory {
         }
         //build the inventory array of components,calling the createComponent function to create the appropriate circuit components for the given level
         for (var i = 0; i < this.componentTypes.length; i++) {
-            this.inventory.push(this.createComponent(this.componentTypes[i], (i % 2 == 0) ? 5 : 50, 25 + 40 * Math.floor(i / 2)));
+            this.inventory.push(this.createComponent(this.componentTypes[i], (i % 2 == 0) ? 5 : 50, 10 + 60 * Math.floor(i / 2)));
             //add the component's graphics to the inventory's graphics' Group
             this.graphics.add(this.inventory[i].graphics);
 

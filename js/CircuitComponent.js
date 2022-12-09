@@ -122,7 +122,7 @@ class Switch extends CircuitComponent {
         if(!symbolMode){
             this.setImage(this.x, this.y, 'images/circuit symbols/switch open.png');
         }else{
-            this.setImage(this.x, this.y, 'images/circuit diagrams/switch.png');
+            this.setImage(this.x, this.y, 'images/circuit diagrams/switch open.png');
         }
         this.closed = false;
     }
@@ -139,7 +139,7 @@ class Switch extends CircuitComponent {
         if(this.closed){
             this.setImage(this.x, this.y, 'images/circuit diagrams/switch closed.png');  
         }else{
-            this.setImage(this.x, this.y, 'images/circuit diagrams/switch.png');  
+            this.setImage(this.x, this.y, 'images/circuit diagrams/switch open.png');  
         }
     }
 }
@@ -167,11 +167,11 @@ class Resistor extends CircuitComponent {
 
 
     setDiagram(){
-        this.setImage(this.x, this.y, 'images/circuit diagrams/resistor.png');  
+        this.setImage(this.x, this.y, 'images/circuit diagrams/resistor.png', this.resistance + " Ω");  
         // this.graphics.add(simpleText);
     }
     setSymbol(){
-        this.setImage(this.x, this.y, 'images/circuit symbols/resistor.png');  
+        this.setImage(this.x, this.y, 'images/circuit symbols/resistor.png', this.resistance + " Ω");  
         // this.graphics.add(simpleText);
         
     }
@@ -201,12 +201,12 @@ class Battery extends CircuitComponent {
     }
 
     setDiagram(){
-        this.setImage(this.x, this.y, 'images/circuit diagrams/battery.png');  
+        this.setImage(this.x, this.y, 'images/circuit diagrams/battery.png', this.voltage + " V");  
         // this.graphics.add(simpleText);
 
     }
     setSymbol(){
-        this.setImage(this.x, this.y, 'images/circuit symbols/battery.png');  
+        this.setImage(this.x, this.y, 'images/circuit symbols/battery.png',this.voltage + " V");  
         // this.graphics.add(simpleText);
 
         
@@ -229,15 +229,20 @@ class Amperemeter extends CircuitComponent {
 
     setAmpere(ampere) {
         // return this.setImage(this.x, this.y, 'images/amperemeter.png', ampere.toFixed(1) + " A");
-        return this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', ampere.toFixed(1) + " A");
+        // return this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', ampere.toFixed(1) + " A");
+        if(!symbolMode){
+            return this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', ampere.toFixed(1) + " A");
+        }else{
+            return this.setImage(this.x, this.y, 'images/circuit diagrams/ammeter.png', ampere.toFixed(1) + " A");
+        }
 
     }
 
     setDiagram(){
-        this.setImage(this.x, this.y, 'images/circuit diagrams/ammeter.png');  
+        this.setImage(this.x, this.y, 'images/circuit diagrams/ammeter.png', this.ampere.toFixed(1) + " A");  
     }
     setSymbol(){
-        this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png');  
+        this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', this.ampere.toFixed(1) + " A");  
         
     }
 }
@@ -258,7 +263,12 @@ class LightBulb extends CircuitComponent {
         console.log("turnOn");
         this.on = true;
         // this.setImage(this.x, this.y, 'images/lightbulb_on.png');
-        this.setImage(this.x, this.y, 'images/circuit symbols/lamp on.png');
+        // this.setImage(this.x, this.y, 'images/circuit symbols/lamp on.png');
+        if(!symbolMode){
+            this.setImage(this.x, this.y, 'images/circuit symbols/lamp on.png');
+        }else{
+            this.setImage(this.x, this.y, 'images/circuit diagrams/lamp.png');
+        }
 
     }
 

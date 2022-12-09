@@ -304,7 +304,7 @@ div#questionBox p{
   float: right;
 }
 
-#checkButton:hover {
+.qBoxbutton:hover {
   background-color: #4F7174;
   color: white;
 }
