@@ -73,4 +73,14 @@ class Inventory {
         console.log("Inventory.whoIAm() couldn't find the component");
         return (null);
     }
+
+    toggleSymbolMode(symbolMode){
+        this.inventory.forEach(function(item){
+            if(symbolMode){
+                item.setDiagram();
+            }else{
+                item.setSymbol();
+            }
+        })
+    }
 }

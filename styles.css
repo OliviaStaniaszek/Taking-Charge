@@ -286,7 +286,7 @@ div#questionBox p{
 
 }
 
-#checkButton{
+.qBoxbutton{
   background-color: #D57C2F;
   font-family: 'Nunito Sans';
   font-weight: bold;

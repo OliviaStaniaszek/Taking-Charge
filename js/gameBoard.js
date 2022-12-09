@@ -2,6 +2,7 @@ var layer;
 var sceneWidth = 1700;
 var sceneHeight = sceneWidth/3.5;
 
+
 document.getElementById("body").onload = function () { playGame() };
 
 var wirebox = new Wire(175, 35, 800, 360);
@@ -12,6 +13,8 @@ var box4 = new Box(250, 190, 100, 100);
 var box5 = new Box(150, 90, 100, 100);
 
 var boxes = [box1, box2, box3, box4, box5];
+
+var symbolMode = false;
 
 var stage = new Konva.Stage({
     container: 'container',
@@ -119,6 +122,20 @@ function haveIntersection(r1, r2) {
         r2.y > r1.y + r1.height ||
         r2.y + r2.height < r1.y
     );
+}
+
+function toggleSymbols(){
+    if(symbolMode){
+        symbolMode = false;
+        amperemetere.setSymbol();
+        
+    }else{
+        symbolMode = true; 
+        amperemetere.setDiagram();
+    }
+    inventory.toggleSymbolMode(symbolMode);
+    
+    console.log(symbolMode);
 }
 
 // update the content of the boxes
