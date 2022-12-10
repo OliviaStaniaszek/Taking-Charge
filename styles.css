@@ -15,7 +15,6 @@ body {
 }
 
 .logo_div {
-
   display: flex;
   justify-content: center;
 }
@@ -23,6 +22,7 @@ body {
 .logo {
   margin-top: 40px;
   width: 15%;
+  border: 100px #020202;
 }
 
 /* Online circuit simulator */
@@ -163,10 +163,10 @@ h1 {
   position: absolute;
   top: 50%;
   width: auto;
-  margin-top: -22px;
-  padding: 16px;
+  margin: -22px 14%;
+  padding: 10px;
   color: #4F7174;
-  font-size: 18px;
+  font-size: 50px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
@@ -180,7 +180,7 @@ h1 {
 
 img {
   width: 65%;
-  padding: 10px;
+  padding-top: 5%;
 }
 
 .next {
@@ -198,21 +198,18 @@ img {
 .text {
   /* padding: 8px 12px; */
   position: absolute;
-  bottom: 30px;
+  bottom: 13%;
   left: 10%;
   width: 80%;
-  background-color: #AEC6C8;
-  font-family: Arial, Helvetica, sans-serif;
-
+  background-color: #b5c6c7;
+  font-weight: bold;
+  font-family: 'Nunito Sans';
+  font-size: large;
+  text-align: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-p {
-  color: #000000;
-  font-size: 20px;
-  text-align: center;
-}
 
 /* Number text (1/? etc) */
 .numbertext {
@@ -263,7 +260,6 @@ div#questionBox {
   text-align: left;
   margin: 10px;
   width: 76.9%;
-  
 }
 
 div#questionBox h2{
