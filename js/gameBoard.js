@@ -1,6 +1,6 @@
 var layer;
 var sceneWidth = 1700;
-var sceneHeight = sceneWidth/3.5;
+var sceneHeight = sceneWidth / 3.5;
 
 
 document.getElementById("body").onload = function () { playGame() };
@@ -14,7 +14,7 @@ var box5 = new Box(150, 90, 100, 100);
 
 var boxes = [box1, box2, box3, box4, box5];
 
-var symbolMode = false;
+var symbolMode = true;
 
 var stage = new Konva.Stage({
     container: 'container',
@@ -25,7 +25,7 @@ var stage = new Konva.Stage({
 
 function playGame() {
     console.log("play game");
-    
+
     layer = new Konva.Layer();
     stage.add(layer);
 
@@ -81,6 +81,8 @@ function playGame() {
     layer.add(scientist.graphics);
     scientist.graphics.on("click", () => alert(question.getHint(1)));
 
+    toggleSymbols();
+
     // use event delegation to update pointer style
     layer.on('mouseover', function (evt) {
         var shape = evt.target;
@@ -96,7 +98,7 @@ function playGame() {
 }
 
 // https://konvajs.org/docs/sandbox/Responsive_Canvas.html
-function fitStageIntoParentContainer(){
+function fitStageIntoParentContainer() {
     var container = document.querySelector('#stage-parent');
 
     // now we need to fit stage into parent container
@@ -124,17 +126,17 @@ function haveIntersection(r1, r2) {
     );
 }
 
-function toggleSymbols(){
-    if(symbolMode){
+function toggleSymbols() {
+    if (symbolMode) {
         symbolMode = false;
         amperemetere.setSymbol();
-        
-    }else{
-        symbolMode = true; 
+
+    } else {
+        symbolMode = true;
         amperemetere.setDiagram();
     }
     inventory.toggleSymbolMode(symbolMode);
-    
+
     console.log(symbolMode);
 }
 

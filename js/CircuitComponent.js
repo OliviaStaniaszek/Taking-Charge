@@ -6,6 +6,7 @@ class CircuitComponent {
         this.type = type;
         this.x = x;
         this.y = y;
+        this.symbolMode = false;
         this.graphics = new Konva.Group({
             x: x,
             y: y,
@@ -105,30 +106,28 @@ class Switch extends CircuitComponent {
 
     setClose() {
         console.log("close");
-        // this.setImage(this.x, this.y, 'images/switch_on.png');
-        console.log(symbolMode);
-        if (!symbolMode) {
-            this.setImage(this.x, this.y, 'images/circuit symbols/switch closed.png');
-        } else {
-            this.setImage(this.x, this.y, 'images/circuit diagrams/switch closed.png');
-        }
+        console.log(this.symbolMode);
         this.closed = true;
+        this.draw();
     }
 
     setOpen() {
         console.log('open');
-        // this.setImage(this.x, this.y, 'images/switch_off.png');
-        // this.setImage(this.x, this.y, 'images/circuit symbols/switch open.png');
-        if (!symbolMode) {
-            this.setImage(this.x, this.y, 'images/circuit symbols/switch open.png');
-        } else {
-            this.setImage(this.x, this.y, 'images/circuit diagrams/switch open.png');
-        }
         this.closed = false;
+        this.draw();
+    }
+
+    draw() {
+        if (this.symbolMode) {
+            this.setSymbol();
+        } else {
+            this.setDiagram();
+        }
     }
 
 
     setSymbol() {
+        this.symbolMode = true;
         if (this.closed) {
             this.setImage(this.x, this.y, 'images/circuit symbols/switch closed.png');
         } else {
@@ -136,6 +135,7 @@ class Switch extends CircuitComponent {
         }
     }
     setDiagram() {
+        this.symbolMode = false;
         if (this.closed) {
             this.setImage(this.x, this.y, 'images/circuit diagrams/switch closed.png');
         } else {
@@ -167,10 +167,12 @@ class Resistor extends CircuitComponent {
 
 
     setDiagram() {
+        this.symbolMode = false;
         this.setImage(this.x, this.y, 'images/circuit diagrams/resistor.png', this.resistance + " Ω");
         // this.graphics.add(simpleText);
     }
     setSymbol() {
+        this.symbolMode = true;
         this.setImage(this.x, this.y, 'images/circuit symbols/resistor.png', this.resistance + " Ω");
         // this.graphics.add(simpleText);
 
@@ -201,11 +203,13 @@ class Battery extends CircuitComponent {
     }
 
     setDiagram() {
+        this.symbolMode = false;
         this.setImage(this.x, this.y, 'images/circuit diagrams/battery.png', this.voltage + " V");
         // this.graphics.add(simpleText);
 
     }
     setSymbol() {
+        this.symbolMode = true;
         this.setImage(this.x, this.y, 'images/circuit symbols/battery.png', this.voltage + " V");
         // this.graphics.add(simpleText);
 
@@ -216,7 +220,6 @@ class Battery extends CircuitComponent {
 
 class Amperemeter extends CircuitComponent {
     constructor(ampere, x, y) {
-        // super(0, "AMPEREMETER", x, y, 'images/amperemeter.png', false);
         super(0, "AMPEREMETER", x, y, 'images/circuit symbols/ammeter.png', false);
         this.x = x - 100;
         this.y = y - 25;
@@ -228,9 +231,7 @@ class Amperemeter extends CircuitComponent {
     }
 
     setAmpere(ampere) {
-        // return this.setImage(this.x, this.y, 'images/amperemeter.png', ampere.toFixed(1) + " A");
-        // return this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', ampere.toFixed(1) + " A");
-        if (!symbolMode) {
+        if (this.symbolMode) {
             return this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', ampere.toFixed(1) + " A");
         } else {
             return this.setImage(this.x, this.y, 'images/circuit diagrams/ammeter.png', ampere.toFixed(1) + " A");
@@ -239,9 +240,11 @@ class Amperemeter extends CircuitComponent {
     }
 
     setDiagram() {
+        this.symbolMode = false;
         this.setImage(this.x, this.y, 'images/circuit diagrams/ammeter.png', this.ampere.toFixed(1) + " A");
     }
     setSymbol() {
+        this.symbolMode = true;
         this.setImage(this.x, this.y, 'images/circuit symbols/ammeter.png', this.ampere.toFixed(1) + " A");
 
     }
@@ -249,7 +252,6 @@ class Amperemeter extends CircuitComponent {
 
 class LightBulb extends CircuitComponent {
     constructor(x, y, on) {
-        // super(0, "LIGHTBULB", x, y, on ? 'images/lightbulb_off.png' : 'images/lightbulb_off.png');
         super(0, "LIGHTBULB", x, y, on ? 'images/circuit symbols/lamp on.png' : 'images/circuit symbols/lamp.png');
         this.on = on;
         this.graphics.me = this;
@@ -260,33 +262,30 @@ class LightBulb extends CircuitComponent {
     }
 
     turnOn() {
-        console.log("turnOn");
+        console.log("turnOn " + symbolMode);
         this.on = true;
-        // this.setImage(this.x, this.y, 'images/lightbulb_on.png');
-        // this.setImage(this.x, this.y, 'images/circuit symbols/lamp on.png');
-        if (symbolMode) {
-            this.setImage(this.x, this.y, 'images/circuit symbols/lamp on.png');
-        } else {
-            this.setImage(this.x, this.y, 'images/circuit diagrams/lamp.png');
-        }
-
+        this.draw();
     }
 
     turnOff() {
-        console.log("turnOff");
+        console.log("turnOff " + symbolMode);
         this.on = false;
-        // this.setImage(this.x, this.y, 'images/lightbulb_off.png');
-        if (symbolMode) {
-            this.setImage(this.x, this.y, 'images/circuit symbols/lamp.png');
-        }
-        else {
-            this.setImage(this.x, this.y, 'images/circuit diagrams/lamp off.png');
-
-        }
-
+        this.draw();
     }
 
+    draw() {
+        console.log("LightBulb.draw() symbolMode=" + symbolMode);
+        if (this.symbolMode) {
+            this.setSymbol();
+        } else {
+            this.setDiagram();
+        }
+    }
+
+
     setDiagram() {
+        console.log("LightBulb.setDiagram() this.on=" + this.on);
+        this.symbolMode = false;
         if (this.on) {
             this.setImage(this.x, this.y, 'images/circuit diagrams/lamp.png');
         } else {
@@ -295,6 +294,8 @@ class LightBulb extends CircuitComponent {
     }
 
     setSymbol() {
+        console.log("LightBulb.setSymbol() this.on=" + this.on);
+        this.symbolMode = true;
         if (this.on) {
             this.setImage(this.x, this.y, 'images/circuit symbols/lamp on.png');
         } else {
@@ -346,11 +347,12 @@ class Thermistor extends CircuitComponent {
     }
 
     setDiagram() {
+        this.symbolMode = false;
         this.setImage(this.x, this.y, 'images/circuit diagrams/battery.png');
     }
     setSymbol() {
+        this.symbolMode = true;
         this.setImage(this.x, this.y, 'images/circuit symbols/battery.png');
-
     }
 }
 
