@@ -260,6 +260,8 @@ div#questionBox {
   text-align: left;
   margin: 10px;
   width: 76.9%;
+  position: relative;
+  left: 8em;
 }
 
 div#questionBox h2{
@@ -303,4 +305,14 @@ div#questionBox p{
 .qBoxbutton:hover {
   background-color: #4F7174;
   color: white;
+}
+
+#container{
+  position: relative;
+  left: 8em;
+}
+
+#level{
+  position: relative;
+  left: 4em;
 }
