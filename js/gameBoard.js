@@ -179,12 +179,8 @@ function checkCircuit() {
             var background = stage.findOne('#backdrop');
             background.fill('#ccffcc');
             
-            var t=setTimeout(nextLevelalert(), 5000);            
-            var t=setTimeout("alertMsg()",3000);
-            
-            function alertMsg(){
-                alert("Hello");
-            }
+            setTimeout(nextLevelalert, 1500);            
+
         }
     }
 
@@ -195,6 +191,8 @@ function checkCircuit() {
         scientist.wrongAnimation();
         var background = stage.findOne('#backdrop');
         background.fill('#ffcccc');
+        setTimeout(hintPromptAlert, 1500);
+        
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOff();
@@ -204,11 +202,16 @@ function checkCircuit() {
 
 }
 
+function hintPromptAlert(){
+    alert('Oops, not quite right!\nClick the scientist if you need a hint');
+}
+
 function nextLevelalert(){
-    if (confirm("Well done! You got it right\nDo you want to go to the level selection or stay on this level?") == true) {
-        userPreference = "Continue to level selection";
+    if (confirm("Well done! You got it right\nSelect 'OK' to go to the level selection or 'CANCEL' to stay on this level") == true) {
+        userPreference = "levelSelection";
+        window.location.href = "levelSelection.html";
     } else {
-        userPreference = "Stay on this level";
+        userPreference = "stay";
     }
 }
 
