@@ -62,20 +62,20 @@ class Scientist {
         //calls the setImage function with the appropriate imgPath, based on the state 
         switch (state) {
             case "TEACH":
-                this.setImage(this.x, this.y, "images/scientist_teach.png");
+                this.setImage(this.x, this.y, "images/scientist/scientist_teach.png");
                 break;
             case "CORRECT":
-                this.setImage(this.x, this.y, "images/scientist_correct.png");
+                this.setImage(this.x, this.y, "images/scientist/scientist_correct.png");
                 break;
             case "INCORRECT":
-                this.setImage(this.x, this.y, "images/scientist_incorrect.png");
+                this.setImage(this.x, this.y, "images/scientist/scientist_incorrect.png");
                 break;
             case "HINT":
-                this.setImage(this.x, this.y, "images/scientist_hint.png");
+                this.setImage(this.x, this.y, "images/scientist/scientist_hint.png");
                 break;
             default:
                 console.log("ERROR!! scientist state is wrong!!!! " + state);
-                this.setImage(this.x, this.y, "images/scientist_teach.png");
+                this.setImage(this.x, this.y, "images/scientist/scientist_teach.png");
                 break;
         }
     }

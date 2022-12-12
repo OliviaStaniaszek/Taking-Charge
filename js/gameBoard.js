@@ -56,23 +56,6 @@ function playGame() {
     inventory = new Inventory(1);
     layer.add(inventory.graphics);
 
-    // checkButton = new Button(560, 265, "images/check.png", "images/check_pressed.png");
-    // layer.add(checkButton.graphics);
-    // checkButton.graphics.on("click", updateBoxContent);
-
-    /*layer.on('dragend', function (e) {
-        var target = e.target;
-        var targetRect = e.target.getClientRect();
-        for (let i = 0; i < boxes.length; i++) {
-            if (haveIntersection(boxes[i].graphics.getClientRect(), targetRect)) {
-                console.log("in box", i + 1);
-                console.log(target.me);
-                boxes[i].me = target.me;
-            }
-        }
-        checkCircuit();
-    });*/
-
 
     //add amperemeter
     amperemetere = new Amperemeter(0, 535, 25);
@@ -192,22 +175,16 @@ function checkCircuit() {
             correctSound();
             scientist.correctAnimation();
             answerIsCorrect = true;
-            // var startTime = Date.now();
-            // scientist.stopAnimation();
             scientist.correctAnimation();
             var background = stage.findOne('#backdrop');
             background.fill('#ccffcc');
-
-            // var endTime = new Date();
-            // endTime.setSeconds(startTime.getSeconds() + 3);
-            // while(Date.now() <= startTime.getSeconds()){
-            //     // console.log(Date.now());
-            // }
-            // if (Date.now() > endTime){
-            //     console.log(startTime, Date.now());
-            //     scientist.stopAnimation();
-            // }
-
+            
+            var t=setTimeout(nextLevelalert(), 5000);            
+            var t=setTimeout("alertMsg()",3000);
+            
+            function alertMsg(){
+                alert("Hello");
+            }
         }
     }
 
@@ -225,6 +202,14 @@ function checkCircuit() {
         }
     }
 
+}
+
+function nextLevelalert(){
+    if (confirm("Well done! You got it right\nDo you want to go to the level selection or stay on this level?") == true) {
+        userPreference = "Continue to level selection";
+    } else {
+        userPreference = "Stay on this level";
+    }
 }
 
 function hasBattery() {
