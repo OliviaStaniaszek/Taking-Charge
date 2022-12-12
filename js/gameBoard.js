@@ -2,16 +2,12 @@ var layer;
 var sceneWidth = 1700;
 var sceneHeight = sceneWidth / 3.5;
 
-
-document.getElementById("body").onload = function () { playGame() };
-
 var wirebox = new Wire(175, 35, 800, 360);
 var box1 = new Box(350, 15, 100, 100);
 var box2 = new Box(550, 90, 100, 100);
 var box3 = new Box(450, 190, 100, 100);
 var box4 = new Box(250, 190, 100, 100);
 var box5 = new Box(150, 90, 100, 100);
-
 var boxes = [box1, box2, box3, box4, box5];
 
 var symbolMode = true;
@@ -23,13 +19,13 @@ var stage = new Konva.Stage({
 
 });
 
-function playGame() {
-    console.log("play game");
+document.getElementById("body").onload = function () { playGame() };
 
+function playGame() {
     layer = new Konva.Layer();
     stage.add(layer);
 
-    //citcuit's fixed background
+    //circuit's fixed background
     rect = new Konva.Rect({
         width: 1100,
         height: 500,
@@ -42,11 +38,8 @@ function playGame() {
 
     //question display
     question = new Question();
-    // question.draw(layer, 1, 10, 510, 1310, 100);
-
     //makes wire and empty boxes
     wirebox.drawBox();
-
     layer.add(wirebox.graphics);
     for (let i = 0; i < 5; i++) { //create boxes for q1
         boxes[i].drawBox();
@@ -56,11 +49,10 @@ function playGame() {
     inventory = new Inventory(1);
     layer.add(inventory.graphics);
 
-
     //add amperemeter
     amperemetere = new Amperemeter(0, 535, 25);
     layer.add(amperemetere.graphics);
-    scientist = new Scientist("HINT", 620, 200); //was 600, 150);
+    scientist = new Scientist("HINT", 620, 200); 
     layer.add(scientist.graphics);
     scientist.graphics.on("click", () => alert(question.getHint(1)));
 
@@ -70,13 +62,11 @@ function playGame() {
     layer.on('mouseover', function (evt) {
         var shape = evt.target;
         document.body.style.cursor = 'pointer';
-        //shape.strokeEnabled(false);
     });
 
     layer.on('mouseout', function (evt) {
         var shape = evt.target;
         document.body.style.cursor = 'default';
-        //shape.strokeEnabled(true);
     });
 }
 
@@ -113,19 +103,15 @@ function toggleSymbols() {
     if (symbolMode) {
         symbolMode = false;
         amperemetere.setSymbol();
-
     } else {
         symbolMode = true;
         amperemetere.setDiagram();
     }
     inventory.toggleSymbolMode(symbolMode);
-
-    console.log(symbolMode);
 }
 
 // update the content of the boxes
 function updateBoxContent() {
-    console.log("updateBoxContent()...")
     //loop through all boxes
     for (let i = 0; i < boxes.length; i++) {
         //initialise the box as "empty"
@@ -135,9 +121,7 @@ function updateBoxContent() {
             //check for intersection between box i and each component from the inventory array
             if (haveIntersection(boxes[i].graphics.getClientRect(),
                 inventory.inventory[c].graphics.getClientRect())) {
-                console.log(inventory.inventory[c].getType() + " with resistance " +
-                    inventory.inventory[c].getResistance() +
-                    " is in box ", i + 1);
+                // console.log(inventory.inventory[c].getType() + " with resistance " + inventory.inventory[c].getResistance() +" is in box ", i + 1);
                 boxes[i].me = inventory.inventory[c];
             }
         }
@@ -164,12 +148,11 @@ function checkCircuit() {
             }
             totalResistance += boxes[i].me.getResistance();
             console.log("resistance: " + totalResistance);
-
         }
+
         current = voltage / totalResistance;
         amperemetere.setAmpere(current);
         if (current == question.getAnswerAmpere(1)) {
-            //correctAnswer();
             console.log("correct!");
             scientist.setState("CORRECT");
             correctSound();
@@ -179,8 +162,7 @@ function checkCircuit() {
             var background = stage.findOne('#backdrop');
             background.fill('#ccffcc');
             
-            setTimeout(nextLevelalert, 1500);            
-
+            setTimeout(nextLevelalert, 1000); //1 second delay before alert pops up
         }
     }
 
@@ -191,7 +173,7 @@ function checkCircuit() {
         scientist.wrongAnimation();
         var background = stage.findOne('#backdrop');
         background.fill('#ffcccc');
-        setTimeout(hintPromptAlert, 1500);
+        setTimeout(hintPromptAlert, 1000);
         
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
@@ -199,7 +181,6 @@ function checkCircuit() {
             }
         }
     }
-
 }
 
 function hintPromptAlert(){
@@ -218,7 +199,6 @@ function nextLevelalert(){
 function hasBattery() {
     var result = false;
     boxes.forEach(function (i) {
-
         if (i.me != undefined && i.me.getType() == "BATTERY") {
             result = true;
         }
@@ -242,7 +222,6 @@ function noEmptyCells() {
 function switchesAreClosed() {
     var result = true;
     boxes.forEach(function (i) {
-
         if (i.me != undefined && i.me.getType() == "SWITCH" && !i.me.isClosed()) {
             result = false;
         }

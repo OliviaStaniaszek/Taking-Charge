@@ -13,7 +13,7 @@ class Scientist {
             y: y,
             rotation: 0,
             draggable: false,
-            offset: { //sets origin to centre rather than top right (used for rotation)
+            offset: { //sets origin to centre rather than top right
                 x: 80,
                 y: 90,
             }
@@ -21,14 +21,6 @@ class Scientist {
         this.setState(this.state);
         this.graphics.on('pointerclick', function () {
             console.log("clicked");
-            
-            // x,y,width,text
-            // var hint = new TextBox(300,300, 100, 'hello there');
-            // hint.drawBox();
-
-            // var box = new Box(300,300, 100, 100);
-            // box.drawBox();
-            // layer.add(hint);
         });
 
     }
@@ -46,10 +38,8 @@ class Scientist {
 
         });
         var imageObj1 = new Image();
-        //console.log(this.img);
         imageObj1.img = this.img;
         imageObj1.onload = function () {
-            //console.log(this.img);
             this.img.image(imageObj1);
         };
         imageObj1.src = imgPath;
@@ -80,12 +70,10 @@ class Scientist {
         }
     }
 
-
     correctAnimation() {
         var scientist = this.graphics;
         var amplitude = 25;
-        var period = 1500;
-        // in ms
+        var period = 1500; // in ms
         var centerY = this.y;
 
         anim = new Konva.Animation(function (frame) {
@@ -95,29 +83,11 @@ class Scientist {
         }, layer);
         console.log("correct animation start");
         anim.start();
-
-
-
-        //use Date.now() to stop after a second or so https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
     }
 
     wrongAnimation() {
         var scientist = this.graphics;
         var angularSpeed = 90;
-        // var angle = 25;
         scientist.offset = { x: scientist.width / 2, y: scientist.height / 2 };
-        // anim = new Konva.Animation(function (frame) {
-        //     var angleDiff = (frame.timeDiff * angularSpeed) / 1000;
-        //     scientist.rotate(angleDiff);
-        //     // x = 640;
-        //     // scientist.y = 200;
-        // }, layer);
-
-        //anim.start();
-    }
-
-    stopAnimation() {
-        anim.stop();
-
     }
 }

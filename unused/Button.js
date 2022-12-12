@@ -32,16 +32,11 @@ class Button {
             y: y,
             width: 150,
             height: 65,
-            // stroke: 'red',
-            // strokeWidth: 10,
-
         });
 
         var imageObj1 = new Image();
-        //console.log(this.img);
         imageObj1.img = this.img;
         imageObj1.onload = function () {
-            //console.log(this.img);
             this.img.image(imageObj1);
         };
         imageObj1.src = imgPath;

@@ -21,8 +21,6 @@ class Inventory {
             y: 0
         });
         this.graphics.add(rect);
-
-
         this.level = level;
         //initiates the componentTypes array based on the level provided
         switch (level) {
@@ -39,9 +37,7 @@ class Inventory {
             this.inventory.push(this.createComponent(this.componentTypes[i], (i % 2 == 0) ? 5 : 50, 10 + 60 * Math.floor(i / 2)));
             //add the component's graphics to the inventory's graphics' Group
             this.graphics.add(this.inventory[i].graphics);
-
         }
-
     }
 
     //create the components based on the given types
@@ -67,9 +63,7 @@ class Inventory {
             if (item.graphics == graphics) {
                 return (item);
             }
-        }
-
-        );
+        });
         console.log("Inventory.whoIAm() couldn't find the component");
         return (null);
     }
