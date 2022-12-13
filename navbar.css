@@ -5,11 +5,11 @@
     #4F7174;
     overflow: hidden;
     
+    
   }
   
   /* Style the links inside the navigation bar */
   .navbar a {
-    
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -22,6 +22,7 @@
   .navbar a:hover {
     background: #D57C2F;
     color: black;
+    transition-duration: 0.2s;
   }
   
   /* Add a color to the active/current link */
