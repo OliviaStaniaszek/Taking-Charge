@@ -4,136 +4,136 @@ body {
   padding: 0;
 }
 
-.takingCharge {
-  font-family: 'Audiowide';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 80px;
-  text-align: center;
-  letter-spacing: 0.1em;
-  color: #4F7174;
+/* home page */
+  .takingCharge {
+    font-family: 'Audiowide';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #4F7174;
+  }
 
-}
+  .logo_div {
+    display: flex;
+    justify-content: center;
+  }
 
-.logo_div {
-  display: flex;
-  justify-content: center;
-}
+  .logo {
+    margin-top: 40px;
+    width: 15%;
+    border: 100px #020202;
+  }
 
-.logo {
-  margin-top: 40px;
-  width: 15%;
-  border: 100px #020202;
-}
+  /* Online circuit simulator */
+  h2 {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: rgba(79, 113, 116, 0.72);
+  }
 
-/* Online circuit simulator */
-h2 {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  text-align: center;
-  letter-spacing: 0.1em;
+  #slider {
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    width: 235px;
+  }
 
-  color: rgba(79, 113, 116, 0.72);
-}
+  .button {
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #D57C2F;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
 
-#slider {
-  position: absolute;
-  bottom: 50px;
-  right: 20px;
-  width: 235px;
-}
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
 
-.button {
-  vertical-align: middle;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #D57C2F;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 150px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
 
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
+  .button:hover span {
+    padding-right: 25px;
+  }
 
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
 
-.button:hover span {
-  padding-right: 25px;
-}
+/* level selection page */
+  .buttons {
+    display: flex;
+    justify-content: center;
+  }
 
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
+  .levels {
+    list-style: none;
+  }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-}
+  .levels li {
+    display: inline;
+  }
 
-.levels {
-  list-style: none;
-}
+  .levels button {
+    vertical-align: middle;
+    display: inline-block;
+    justify-content: center;
+    background: #D57C2F;
+    border: 1px solid #D57C2F;
+    transition-duration: 0.2s;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 26px;
+    padding: 10px;
+    margin: 40px;
+    width: 200px;
+    width: 180px;
+    height: 180px;
+  }
 
-.levels li {
-  display: inline;
-}
+  .levels button:hover {
+    background: #4F7174;
+    border-color: #4F7174;
+  }
 
-.levels button {
+  .levels span {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+  }
 
-  vertical-align: middle;
-  display: inline-block;
-  justify-content: center;
-  background: #D57C2F;
-  border: 1px solid #D57C2F;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 26px;
-  padding: 10px;
-  margin: 40px;
-  width: 200px;
-  width: 180px;
-  height: 180px;
+  .levels img {
+    width: 100px;
+  }
 
-
-}
-
-.levels button:hover {
-  background: #ef6210;
-}
-
-.levels span {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 0.1em;
-  color: #FFFFFF;
-}
-
-.levels img {
-  width: 100px;
-}
 
 h1 {
   font-family: 'Audiowide';
@@ -146,162 +146,164 @@ h1 {
 
 }
 
-.slide-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  width: auto;
-  margin: -22px 14%;
-  padding: 10px;
-  color: #4F7174;
-  font-size: 50px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-.instructions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-img {
-  width: 65%;
-  padding-top: 5%;
-}
-
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-.prev:hover,
-.next:hover {
-  color: #FFFFFF;
-  background-color: #4F7174;
-}
-
-/* Caption text */
-.text {
-  /* padding: 8px 12px; */
-  position: absolute;
-  bottom: 13%;
-  left: 10%;
-  width: 80%;
-  background-color: #b5c6c7;
-  font-weight: bold;
-  font-family: 'Nunito Sans';
-  font-size: large;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color:  #b5c6c7;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active,
-.dot:hover {
-  background-color: #4F7174;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.8s;
-}
-
-@keyframes fade {
-  from {
-    opacity: .3
+/* how to page */
+  .slide-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
   }
 
-  to {
-    opacity: 1
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
   }
-}
 
-div#questionBox {
-  background-color: #E7E6E6;
-  text-align: left;
-  margin: 10px;
-  width: 76.9%;
-  position: relative;
-  left: 8em;
-}
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    margin: -22px 14%;
+    padding: 10px;
+    color: #4F7174;
+    font-size: 50px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
 
-div#questionBox h2{
-  text-align: left;
-  padding: 10px;
-  margin: 0;
-  letter-spacing: 0;
-  display: inline;
-  font-size: 35px;
-}
+  .instructions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-div#questionBox p{
-  text-align: left;
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  padding: 10px;
-  margin: 0;
+  img {
+    width: 65%;
+    padding-top: 5%;
+  }
 
-}
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
 
-.qBoxbutton{
-  background-color: #D57C2F;
-  font-family: 'Nunito Sans';
-  font-weight: bold;
-  padding: 5px;
-  text-align: right;
-  margin: 10px;
-  padding: 16px 32px;
-  text-align: center;
-  transition-duration: 0.2s;
-  cursor: pointer;
-  bottom: 200px;
-  left: 1100px;
-  border-radius: 8px;
-  color: white;
-  float: right;
-}
+  .prev:hover,
+  .next:hover {
+    color: #FFFFFF;
+    background-color: #4F7174;
+  }
 
-.qBoxbutton:hover {
-  background-color: #4F7174;
-  color: white;
-}
+  /* Caption text */
+  .text {
+    /* padding: 8px 12px; */
+    position: absolute;
+    bottom: 13%;
+    left: 10%;
+    width: 80%;
+    background-color: #b5c6c7;
+    font-weight: bold;
+    font-family: 'Nunito Sans';
+    font-size: large;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
-#container{
-  position: relative;
-  left: 8em;
-}
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color:  #b5c6c7;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
 
-#level{
-  position: relative;
-  left: 4em;
-}
+  .active,
+  .dot:hover {
+    background-color: #4F7174;
+  }
+
+  /* Fading animation */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.8s;
+  }
+
+  @keyframes fade {
+    from {
+      opacity: .3
+    }
+
+    to {
+      opacity: 1
+    }
+  }
+
+/* game board */
+  div#questionBox {
+    background-color: #E7E6E6;
+    text-align: left;
+    margin: 10px;
+    width: 76.9%;
+    position: relative;
+    left: 8em;
+  }
+
+  div#questionBox h2{
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+    letter-spacing: 0;
+    display: inline;
+    font-size: 35px;
+  }
+
+  div#questionBox p{
+    text-align: left;
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 10px;
+    margin: 0;
+
+  }
+
+  .qBoxbutton{
+    background-color: #D57C2F;
+    font-family: 'Nunito Sans';
+    font-weight: bold;
+    padding: 5px;
+    text-align: right;
+    margin: 10px;
+    padding: 16px 32px;
+    text-align: center;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    bottom: 200px;
+    left: 1100px;
+    border-radius: 8px;
+    color: white;
+    float: right;
+  }
+
+  .qBoxbutton:hover {
+    background-color: #4F7174;
+    color: white;
+  }
+
+  #container{
+    position: relative;
+    left: 8em;
+  }
+
+  #level{
+    position: relative;
+    left: 4em;
+  }
