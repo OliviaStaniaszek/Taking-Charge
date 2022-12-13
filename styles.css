@@ -211,18 +211,6 @@ img {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
-/* Number text (1/? etc) */
-.numbertext {
-  color: #000000;
-  font-size: 25px;
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 8px 12px;
-  position: absolute;
-  top: 12%;
-  left: 12%;
-}
-
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
@@ -243,12 +231,12 @@ img {
 /* Fading animation */
 .fade {
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 1.8s;
 }
 
 @keyframes fade {
   from {
-    opacity: .4
+    opacity: .3
   }
 
   to {
