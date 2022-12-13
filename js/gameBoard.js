@@ -52,7 +52,7 @@ function playGame() {
     //add amperemeter
     amperemetere = new Amperemeter(0, 535, 25);
     layer.add(amperemetere.graphics);
-    scientist = new Scientist("HINT", 620, 200); 
+    scientist = new Scientist("HINT", 620, 200);
     layer.add(scientist.graphics);
     scientist.graphics.on("click", () => alert(question.getHint(1)));
 
@@ -161,7 +161,7 @@ function checkCircuit() {
             scientist.correctAnimation();
             var background = stage.findOne('#backdrop');
             background.fill('#ccffcc');
-            
+
             setTimeout(nextLevelalert, 1000); //1 second delay before alert pops up
         }
     }
@@ -174,7 +174,7 @@ function checkCircuit() {
         var background = stage.findOne('#backdrop');
         background.fill('#ffcccc');
         setTimeout(hintPromptAlert, 1000);
-        
+
         for (let c = 0; c < inventory.inventory.length; c++) {
             if (inventory.inventory[c].getType() == "LIGHTBULB") {
                 inventory.inventory[c].turnOff();
@@ -183,11 +183,11 @@ function checkCircuit() {
     }
 }
 
-function hintPromptAlert(){
+function hintPromptAlert() {
     alert('Oops, not quite right!\nClick the scientist if you need a hint');
 }
 
-function nextLevelalert(){
+function nextLevelalert() {
     if (confirm("Well done! You got it right\nSelect 'OK' to go to the level selection or 'CANCEL' to stay on this level") == true) {
         userPreference = "levelSelection";
         window.location.href = "levelSelection.html";
